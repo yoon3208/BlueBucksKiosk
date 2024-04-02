@@ -14,7 +14,7 @@
 		37B43FD62BBAAA550038D52C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37B43FD52BBAAA550038D52C /* Assets.xcassets */; };
 		37B43FD92BBAAA550038D52C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */; };
 		37B43FE12BBAAAEA0038D52C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 37B43FE02BBAAAEA0038D52C /* .gitignore */; };
-		AB9C4A6C2BBBCBB200B1E48C /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A6B2BBBCBB200B1E48C /* CartViewController.swift */; };
+		AB9C4A6E2BBC1EA400B1E48C /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +27,7 @@
 		37B43FD82BBAAA550038D52C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37B43FDA2BBAAA550038D52C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37B43FE02BBAAAEA0038D52C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		AB9C4A6B2BBBCBB200B1E48C /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CartViewController.swift; path = ../../CartViewController.swift; sourceTree = "<group>"; };
+		AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,8 @@
 				37B43FCC2BBAAA540038D52C /* AppDelegate.swift */,
 				37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */,
 				37B43FD02BBAAA540038D52C /* ViewController.swift */,
+				AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */,
 				37B43FD22BBAAA540038D52C /* Main.storyboard */,
-				AB9C4A6B2BBBCBB200B1E48C /* CartViewController.swift */,
 				37B43FD52BBAAA550038D52C /* Assets.xcassets */,
 				37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */,
 				37B43FDA2BBAAA550038D52C /* Info.plist */,
@@ -145,7 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB9C4A6C2BBBCBB200B1E48C /* CartViewController.swift in Sources */,
+				AB9C4A6E2BBC1EA400B1E48C /* CartViewController.swift in Sources */,
 				37B43FD12BBAAA540038D52C /* ViewController.swift in Sources */,
 				37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */,
 				37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */,
