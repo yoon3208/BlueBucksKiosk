@@ -29,7 +29,7 @@ class DetailPageViewController: UIViewController {
     var selectedName: String = "아메리카노"
     var selectedPrice: Int = 5000
     
-    //음료명과 상세설명 매핑 ["음료명": "상세섦명"]
+    //음료명과 상세설명 매핑 ["음료명": "상세섦명"] -> 추가예정
     let drinkDescription: [String: String] = [
         "아이스 아메리카노": "블루벅스만의 깔끔하고 강렬한 에스프레소를 가장 부드럽고 시원하게 즐길 수 있는 커피"
                                               ]

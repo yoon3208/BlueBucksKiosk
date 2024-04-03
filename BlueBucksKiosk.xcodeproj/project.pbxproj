@@ -16,6 +16,7 @@
 		37B43FE12BBAAAEA0038D52C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 37B43FE02BBAAAEA0038D52C /* .gitignore */; };
 		F1AD0BFB2BBBD5FE009F42F1 /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */; };
 		F1AD0BFF2BBBD697009F42F1 /* detailPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AD0BFE2BBBD697009F42F1 /* detailPage.storyboard */; };
+		F1AD0C012BBD33F3009F42F1 /* dummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0C002BBD33F3009F42F1 /* dummyData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		37B43FE02BBAAAEA0038D52C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
 		F1AD0BFE2BBBD697009F42F1 /* detailPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = detailPage.storyboard; sourceTree = "<group>"; };
+		F1AD0C002BBD33F3009F42F1 /* dummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummyData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		37B43FCB2BBAAA540038D52C /* BlueBucksKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				F1AD0C002BBD33F3009F42F1 /* dummyData.swift */,
 				37B43FCC2BBAAA540038D52C /* AppDelegate.swift */,
 				37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */,
 				37B43FD02BBAAA540038D52C /* ViewController.swift */,
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1AD0BFB2BBBD5FE009F42F1 /* DetailPageViewController.swift in Sources */,
+				F1AD0C012BBD33F3009F42F1 /* dummyData.swift in Sources */,
 				37B43FD12BBAAA540038D52C /* ViewController.swift in Sources */,
 				37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */,
 				37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */,
