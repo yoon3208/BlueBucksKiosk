@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E36C7962BBCEF090004E6CF /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E36C7952BBCEF090004E6CF /* OptionViewController.swift */; };
+		2E36C7982BBCEF280004E6CF /* OptionStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */; };
 		37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCC2BBAAA540038D52C /* AppDelegate.swift */; };
 		37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */; };
 		37B43FD12BBAAA540038D52C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FD02BBAAA540038D52C /* ViewController.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E36C7952BBCEF090004E6CF /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
+		2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionStoryboard.storyboard; sourceTree = "<group>"; };
 		37B43FC92BBAAA540038D52C /* BlueBucksKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueBucksKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B43FCC2BBAAA540038D52C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				37B43FD52BBAAA550038D52C /* Assets.xcassets */,
 				37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */,
 				37B43FDA2BBAAA550038D52C /* Info.plist */,
+				2E36C7952BBCEF090004E6CF /* OptionViewController.swift */,
+				2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */,
 			);
 			path = BlueBucksKiosk;
 			sourceTree = "<group>";
@@ -131,6 +137,7 @@
 				37B43FE12BBAAAEA0038D52C /* .gitignore in Resources */,
 				37B43FD92BBAAA550038D52C /* LaunchScreen.storyboard in Resources */,
 				37B43FD62BBAAA550038D52C /* Assets.xcassets in Resources */,
+				2E36C7982BBCEF280004E6CF /* OptionStoryboard.storyboard in Resources */,
 				37B43FD42BBAAA540038D52C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37B43FD12BBAAA540038D52C /* ViewController.swift in Sources */,
+				2E36C7962BBCEF090004E6CF /* OptionViewController.swift in Sources */,
 				37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */,
 				37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */,
 			);
