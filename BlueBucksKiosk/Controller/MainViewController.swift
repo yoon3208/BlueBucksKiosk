@@ -23,8 +23,13 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setCollectionView()
+        setAddTarget()
+        //setCollectionView() // To Do - 연결 할 때 주석 삭제
         initSegmentedControl()
+    }
+    
+    private func setAddTarget() {
+        self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
     }
     
     private func setCollectionView() {
@@ -42,6 +47,19 @@ final class MainViewController: UIViewController {
                                                           for: .normal)
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
                                                            .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+    }
+    
+    @objc private func didChangedSCValue(segment: UISegmentedControl) {
+        switch segment.selectedSegmentIndex {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            break
+        default:
+            break
+        }
     }
 }
 
