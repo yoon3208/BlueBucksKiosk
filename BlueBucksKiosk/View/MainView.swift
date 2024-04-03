@@ -17,7 +17,9 @@ class MainView: UIView {
     }()
     
     let drinkCollectionView: UICollectionView = {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return cv
     }()
     
@@ -63,7 +65,7 @@ class MainView: UIView {
         }
         
         drinkCollectionView.snp.makeConstraints {
-            $0.top.equalTo(categoriesSC.snp.bottom).offset(10)
+            $0.top.equalTo(categoriesSC.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(shoppingBasketBtn.snp.top).offset(-10)
         }

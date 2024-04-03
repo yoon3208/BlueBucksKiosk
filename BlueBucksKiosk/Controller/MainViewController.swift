@@ -12,6 +12,9 @@ final class MainViewController: UIViewController {
     // MARK: - properties
     private let mainView = MainView()
     
+    // To Do - 병합 후 수정
+    let minimumLineSpacing: CGFloat = 10
+    
     // MARK: - life cycles
     override func loadView() {
         view = mainView
@@ -20,7 +23,16 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setCollectionView()
         initSegmentedControl()
+    }
+    
+    private func setCollectionView() {
+        self.mainView.drinkCollectionView.delegate = self
+        self.mainView.drinkCollectionView.dataSource = self
+        
+        // To Do - cell regist
+        // self.mainView.drinkCollectionView.register.(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
     }
     
     private func initSegmentedControl() {
@@ -30,5 +42,45 @@ final class MainViewController: UIViewController {
                                                           for: .normal)
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
                                                            .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate {
+    
+}
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // To Do - reload 될 때 동적으로 수정
+        return 80
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // To Do - 병합 후 수정
+        // guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: <#T##String#>, for: <#T##IndexPath#>) as? "example" else { return UICollectionViewCell() }
+        // return cell
+        
+        // To Do - 병합 할 떄 삭제
+        return UICollectionViewCell()
+    }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    // 셀의 크기
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // To Do - 병합 후 수정
+        let width = collectionView.frame.width/3 - minimumLineSpacing
+        return CGSize(width: width, height: width)
+    }
+    
+    // 지정 된 섹션의 행 사이 최소 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return minimumLineSpacing
+    }
+    
+    // 지정 된 섹션의 셀 사이 최소 간격
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        // To Do - 병합 후 수정
+        return 10
     }
 }
