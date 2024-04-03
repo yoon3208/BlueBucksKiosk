@@ -16,13 +16,14 @@ class DetailPageViewController: UIViewController {
     @IBOutlet var descriptionText: UILabel!
     
     
+   
     //선택한 제품의 이미지, 이름, 가격
     var Image: UIImage?
     var name: String = "아이스 아메리카노"
     var price: Int = 4500
     
     //음료명과 상세설명 매핑 ["음료명": "상세섦명"]
-    let drinkDescription: [String: String] = [
+    let descriptions: [String: String] = [
         "아이스 아메리카노": "블루벅스만의 깔끔하고 강렬한 에스프레소를 가장 부드럽고 시원하게 즐길 수 있는 커피"
                                               ]
 
@@ -36,8 +37,8 @@ class DetailPageViewController: UIViewController {
         priceLabel.text = "\(price)₩"
         
         //음료명에 따른 상세설명 표시
-        if let drinkDescription = drinkDescription[name]{
-            descriptionText.text = drinkDescription
+        if let description = descriptions[name]{
+            descriptionText.text = description
         }else{
             descriptionText.text = "상세설명 없음"
         }
