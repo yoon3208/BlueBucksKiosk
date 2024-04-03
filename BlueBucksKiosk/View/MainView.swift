@@ -25,7 +25,7 @@ class MainView: UIView {
         let btn = UIButton()
         btn.setTitle("장바구니로 이동", for: .normal)
         btn.setTitleColor(.black, for: .normal)
-        btn.backgroundColor = .init(red: 0, green: 168/255, blue: 217/255, alpha: 1)
+        btn.backgroundColor = .bluebucks
         var buttonConfig = UIButton.Configuration.tinted()
         buttonConfig.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
         btn.configuration = buttonConfig

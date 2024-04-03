@@ -20,5 +20,15 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initSegmentedControl()
+    }
+    
+    private func initSegmentedControl() {
+        self.mainView.categoriesSC.selectedSegmentIndex = 0
+        
+        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
+                                                          for: .normal)
+        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
+                                                           .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
     }
 }

@@ -17,7 +17,7 @@ final class UnderlineSegmentedControl: UISegmentedControl {
         let yPosition = self.bounds.size.height - 6.0
         let frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
         let view = UIView(frame: frame)
-        view.backgroundColor = .init(red: 0, green: 168/255, blue: 217/255, alpha: 1)
+        view.backgroundColor = .bluebucks
         self.addSubview(view)
         return view
     }()
@@ -43,8 +43,6 @@ final class UnderlineSegmentedControl: UISegmentedControl {
     override init(items: [Any]?) {
         super.init(items: items)
         self.removeBackgroundAndDivider()
-        
-        self.selectedSegmentIndex = 0
     }
     
     required init?(coder: NSCoder) {
