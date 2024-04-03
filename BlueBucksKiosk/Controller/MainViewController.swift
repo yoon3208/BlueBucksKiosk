@@ -30,6 +30,7 @@ final class MainViewController: UIViewController {
     
     private func setAddTarget() {
         self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
+        self.mainView.shoppingBasketBtn.addTarget(self, action: #selector(didTappedShoppingBasketBtn), for: .touchUpInside)
     }
     
     private func setCollectionView() {
@@ -60,6 +61,10 @@ final class MainViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    @objc private func didTappedShoppingBasketBtn(button: UIButton) {
+        // To Do - 추가 된 데이터와 함께 장바구니로 이동
     }
 }
 
