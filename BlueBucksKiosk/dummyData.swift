@@ -2,7 +2,7 @@
 //  dummyData.swift
 //  BlueBucksKiosk
 //
-//  Created by SAMSUNG on 2024/04/03.
+//  Created by 박윤희 on 2024/04/03.
 //
 
 import UIKit
