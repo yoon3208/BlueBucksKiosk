@@ -3,7 +3,7 @@
 //  BlueBucksKiosk
 //
 //  Created by 박윤희 on 2024/04/02.
-//
+//변수명 변경예정
 
 import UIKit
 
