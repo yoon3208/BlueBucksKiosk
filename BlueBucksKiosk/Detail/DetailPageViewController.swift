@@ -17,9 +17,9 @@ class DetailPageViewController: UIViewController {
     
     
     //선택한 제품의 이미지, 이름, 가격
-    var selectedImage: UIImage?
-    var selectedName: String = "아이스 아메리카노"
-    var selectedPrice: Int = 4500
+    var Image: UIImage?
+    var name: String = "아이스 아메리카노"
+    var price: Int = 4500
     
     //음료명과 상세설명 매핑 ["음료명": "상세섦명"]
     let drinkDescription: [String: String] = [
@@ -31,12 +31,12 @@ class DetailPageViewController: UIViewController {
         super.viewDidLoad()
 
         //이전 뷰컨트롤러에 있는 정보 가져오기
-        imageView.image = selectedImage
-        nameLabel.text = selectedName
-        priceLabel.text = "\(selectedPrice)₩"
+        imageView.image = Image
+        nameLabel.text = name
+        priceLabel.text = "\(price)₩"
         
         //음료명에 따른 상세설명 표시
-        if let drinkDescription = drinkDescription[selectedName]{
+        if let drinkDescription = drinkDescription[name]{
             descriptionText.text = drinkDescription
         }else{
             descriptionText.text = "상세설명 없음"
@@ -49,8 +49,8 @@ class DetailPageViewController: UIViewController {
 //        if segue.identifier == ""{
 //            //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
 //            if let nextVC = segue.destination as? _ {
-//                nextVC.selectedName = selectedName
-//                nextVC.selectedPrice = selectedPrice
+//                nextVC.name = name
+//                nextVC.price = price
 //            }
 //        }
 //    }
@@ -61,5 +61,5 @@ class DetailPageViewController: UIViewController {
 //        performSegue(withIdentifier: <#T##String#>, sender: self)
 //
 //    }
-
+//
 }
