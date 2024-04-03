@@ -9,7 +9,6 @@ import UIKit
 
 class CartViewController: UIViewController {
     
-    
     @IBOutlet weak var menuCnt: UILabel!
     @IBOutlet weak var menuPriceSum: UILabel!
     @IBOutlet weak var purchaseBtn: UIButton!
