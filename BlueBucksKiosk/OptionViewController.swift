@@ -32,6 +32,7 @@ enum Size: Int {
 class OptionViewController: UIViewController {
     
     @IBOutlet weak var DrinkName: UILabel!
+    var selectedName: String = "아이스 아메리카노"
     
     @IBOutlet weak var tallButton: UIView!
     
@@ -58,15 +59,11 @@ class OptionViewController: UIViewController {
     }
     @IBOutlet weak var optionAddPrice: UILabel! {
         didSet {
-            var price: Int = 100
-            optionAddPrice.text = "가격: \(price)"
+            var selectedPrice: Int = 4500
+            optionAddPrice.text = "가격: \(selectedPrice)"
         }
     }
-    var price: Int = 6000 {
-        didSet {
-            optionAddPrice.text = "가격: \(price)"
-        }
-    }
+    var selectedPrice: Int = 4500
 
     
     @IBOutlet weak var totalCount: UILabel!
@@ -138,12 +135,12 @@ class OptionViewController: UIViewController {
         
         // 만약 grandeButton이 눌린 상태라면, 가격에 500을 더합니다.
            if grandeButtonPressed {
-               price += 500
+               selectedPrice += 500
            }
            
            // 만약 ventiButton이 눌린 상태라면, 가격에 1000을 더합니다.
            if ventiButtonPressed {
-               price += 1000
+               selectedPrice += 1000
            }
     }
     
@@ -159,12 +156,12 @@ class OptionViewController: UIViewController {
         
         // 만약 grandeButton이 눌린 상태라면, 가격에 500을 더합니다.
            if grandeButtonPressed {
-               price += 500
+               selectedPrice += 500
            }
            
            // 만약 ventiButton이 눌린 상태라면, 가격에 1000을 더합니다.
            if ventiButtonPressed {
-               price += 1000
+               selectedPrice += 1000
            }
     }
     
