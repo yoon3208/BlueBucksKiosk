@@ -43,23 +43,23 @@ class DetailPageViewController: UIViewController {
         }
     }
    
-    //segue로 다음 뷰컨트롤러에 정보 전달
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // if segue.identifier == "세그웨이 식별자 이름"
-        if segue.identifier == ""{
-            //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
-            if let nextVC = segue.destination as? _ {
-                nextVC.selectedName = selectedName
-                nextVC.selectedPrice = selectedPrice
-            }
-        }
-    }
-
-    //버튼을 누르면 다음 뷰컨트롤러로 이동 및 정보 전달
-    @IBAction func tappedInto(_ sender: UIButton) {
-        //performSegue(withIdentifier: "세그웨이 식별자 이름", sender: self)
-        performSegue(withIdentifier: <#T##String#>, sender: self)
-
-    }
+//    //segue로 다음 뷰컨트롤러에 정보 전달
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // if segue.identifier == "세그웨이 식별자 이름"
+//        if segue.identifier == ""{
+//            //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
+//            if let nextVC = segue.destination as? _ {
+//                nextVC.selectedName = selectedName
+//                nextVC.selectedPrice = selectedPrice
+//            }
+//        }
+//    }
+//
+//    //버튼을 누르면 다음 뷰컨트롤러로 이동 및 정보 전달
+//    @IBAction func tappedInto(_ sender: UIButton) {
+//        //performSegue(withIdentifier: "세그웨이 식별자 이름", sender: self)
+//        performSegue(withIdentifier: <#T##String#>, sender: self)
+//
+//    }
 
 }
