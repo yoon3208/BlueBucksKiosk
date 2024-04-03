@@ -5,7 +5,7 @@
 //  Created by SAMSUNG on 2024/04/03.
 //
 
-import UIKit
+import Foundation
 
 struct Drink {
     var name: (String, String)
