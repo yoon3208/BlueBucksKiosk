@@ -8,41 +8,68 @@
 import UIKit
 
 class DetailPageViewController: UIViewController {
-//    var selectedDrink: Drink?
 
-   
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
-    var descriptionText: String = ""
+    @IBOutlet var descriptionText: UILabel!
+    
+    
+    
+    struct Drink {
+        var name: (String, String)
+        var image: UIImage
+        var description: String = ""
+        var price: Int
+    }
+    
+    var selectedImage: UIImage?
+    var selectedName: String = "제품명"
+    var selectedPrice: Int = 0
+    
+    let productDescription: [String: String] = [
+        "아이스 아메리카노": "블루벅스만의 깔끔하고 강렬한 에스프레소를 가장 부드럽고 시원하게 즐길 수 있는 커피"
+                                              ]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addDescription()
 
-//        if let drink = selectedDrink{
-//            drinkImage.image = drink.image
-//            drinkKor.text = drink.name
-//            drinkPrice.text = drink.price
+        
+        imageView.image = selectedImage
+        nameLabel.text = selectedName
+        priceLabel.text = "\(selectedPrice)₩"
+        
+        if let drinkDescription = productDescription[selectedName]{
+            descriptionText.text = drinkDescription
+        }else{
+            descriptionText.text = "상세설명 없음"
+        }
+    }
+   
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // if segue.identifier == "세그웨이 식별자 이름"
+//        if segue.identifier == ""{
+//            //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
+//            if let nextVC = segue.destination as? _ {
+//                nextVC.selectedName = selectedName
+//                nextVC.
+//            }
 //        }
-    }
-    //상세설명 추가하는 메서드
-    func addDescription(){
-        let description = UITextView()
-        description.text = descriptionText
-        description.isScrollEnabled = false
-        
-        //stackView에 UITextView 추가
-        stackView.addArrangedSubview(description)
-        
-    }
-
-
-    
-    
-    @IBAction func tappedInto(_ sender: Any) {
-    }
-    
+//    }
+//
+//
+//
+//
+//    @IBAction func tappedInto(_ sender: Any) {
+//        //performSegue(withIdentifier: "세그웨이 식별자 이름", sender: nil)
+//        performSegue(withIdentifier: <#T##String#>, sender: nil)
+//
+//    }
+//
     
     /*
     // MARK: - Navigation
