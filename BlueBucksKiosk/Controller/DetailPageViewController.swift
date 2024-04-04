@@ -55,10 +55,10 @@ class DetailPageViewController: UIViewController {
         // if segue.identifier == "세그웨이 식별자 이름"
         if segue.identifier == "showNextView"{
             //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
-            if let nextVC = segue.destination as? OptionViewController {
-                nextVC.name = name
-                nextVC.price = price
-            }
+//            if let nextVC = segue.destination as? OptionViewController {
+//                nextVC.name = name
+//                nextVC.price = price
+//            }
         }
     }
 

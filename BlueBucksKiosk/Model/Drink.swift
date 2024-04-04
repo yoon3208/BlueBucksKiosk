@@ -1,5 +1,5 @@
 //
-//  dummyData.swift
+//  Drink.swift
 //  BlueBucksKiosk
 //
 //  Created by 박윤희 on 2024/04/03.
