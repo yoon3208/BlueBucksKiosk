@@ -58,12 +58,13 @@ class OptionViewController: UIViewController {
         
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+        
+        
     }
     
     
     @IBAction func grandeButton(_ sender: Any) {
         // 이전에 grande 버튼이 눌렸던 상태를 저장합니다.
-        let wasGrandeButtonPressed = grandeButtonPressed
         
         grandeButtonPressed.toggle()
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
@@ -75,21 +76,25 @@ class OptionViewController: UIViewController {
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        // 이전에 grande 버튼이 눌려있었던 경우
-        if wasGrandeButtonPressed {
-            // 500을 selectedPrice에서 빼고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice -= 500
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        } else {
-            // 이전에 grande 버튼이 눌리지 않았던 경우
-            // 500을 selectedPrice에 더하고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice += 500
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        }
+   
+        if !grandeButtonPressed { 
+            sizeOptionPrice -= 500
+            // grande 버튼이 눌리지 않은 경우
+                if ventiButtonPressed && tallButtonPressed { // venti, tall 버튼이 눌린 경우
+                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
+                    sizeOptionPrice -= 500
+                }
+            } else { // venti 버튼이 눌린 경우
+                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
+                sizeOptionPrice += 500
+            }
+        
+        // 나머지 버튼들의 상태를 초기화합니다.
+        resetOtherButtonStates(grandeButton)
+        updateOptionAddPrice()
     }
     
     @IBAction func ventiButton(_ sender: Any) {
-        let wasVentiButtonPressed = ventiButtonPressed
         
         ventiButtonPressed.toggle()
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
@@ -100,30 +105,49 @@ class OptionViewController: UIViewController {
         
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
+      
+        if !ventiButtonPressed { 
+            sizeOptionPrice -= 1000
+            // venti 버튼이 눌리지 않은 경우
+                if grandeButtonPressed && tallButtonPressed{ // grande 버튼이 눌린 경우
+                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
+                    sizeOptionPrice -= 1000
+                }
+            } else { // venti 버튼이 눌린 경우
+                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
+                sizeOptionPrice += 1000
+            }
         
-        if wasVentiButtonPressed {
-            // 500을 selectedPrice에서 빼고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice -= 1000
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        } else {
-            // 이전에 grande 버튼이 눌리지 않았던 경우
-            // 500을 selectedPrice에 더하고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice += 1000
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        }
+        // 나머지 버튼들의 상태를 초기화합니다.
+        resetOtherButtonStates(ventiButton)
+        updateOptionAddPrice()
     }
     
     @IBOutlet weak var optionAddPrice: UILabel! {
         didSet {
-            optionAddPrice.text = "가격: \(selectedPrice)"
+            updateOptionAddPrice()
         }
     }
     
-    var selectedPrice: Int = 4500
+    var selectedPrice: Int = 4500 {
+        didSet {
+            updateOptionAddPrice()
+        }
+    }
     
+    var sizeOptionPrice: Int = 0 // 사이즈 옵션에 대한 추가 가격
     
     @IBOutlet weak var totalCount: UILabel!
-    var count: Int = 1
+    var count: Int = 1 {
+        didSet {
+            updateOptionAddPrice()
+        }
+    }
+    
+    func updateOptionAddPrice() {
+           let totalPrice = (selectedPrice + sizeOptionPrice) * count
+           optionAddPrice.text = "가격: \(totalPrice)"
+       }
     
     @IBAction func addCount(_ sender: Any) {
         count += 1 // totalCount 값 증가
@@ -181,8 +205,6 @@ class OptionViewController: UIViewController {
     }
     
     @objc func toggleGrandeButton(_ sender: UITapGestureRecognizer) {
-        // 이전에 grande 버튼이 눌렸던 상태를 저장합니다.
-        let wasGrandeButtonPressed = grandeButtonPressed
         
         // grande 버튼의 상태를 변경합니다.
         grandeButtonPressed.toggle()
@@ -195,21 +217,25 @@ class OptionViewController: UIViewController {
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        // 이전에 grande 버튼이 눌려있었던 경우
-        if wasGrandeButtonPressed {
-            // 500을 selectedPrice에서 빼고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice -= 500
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        } else {
-            // 이전에 grande 버튼이 눌리지 않았던 경우
-            // 500을 selectedPrice에 더하고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice += 500
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        }
+        if !grandeButtonPressed { 
+            sizeOptionPrice -= 500
+            // grande 버튼이 눌리지 않은 경우
+                if ventiButtonPressed && tallButtonPressed { // venti, tall 버튼이 눌린 경우
+                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
+                    sizeOptionPrice -= 500
+                }
+            } else { // venti 버튼이 눌린 경우
+                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
+                sizeOptionPrice += 500
+            }
+        
+        // 나머지 버튼들의 상태를 초기화합니다.
+        resetOtherButtonStates(grandeButton)
+        updateOptionAddPrice()
+        
     }
-
+    
     @objc func toggleVentiButton(_ sender: UITapGestureRecognizer) {
-        let wasVentiButtonPressed = ventiButtonPressed
         
         // venti 버튼의 상태를 변경합니다.
         ventiButtonPressed.toggle()
@@ -222,18 +248,41 @@ class OptionViewController: UIViewController {
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
         
-        if wasVentiButtonPressed {
-            // 500을 selectedPrice에서 빼고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice -= 1000
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        } else {
-            // 이전에 grande 버튼이 눌리지 않았던 경우
-            // 500을 selectedPrice에 더하고, 변경된 값을 optionAddPrice 레이블에 표시합니다.
-            selectedPrice += 1000
-            optionAddPrice.text = "가격: \(selectedPrice)"
-        }
+        if !ventiButtonPressed { 
+            sizeOptionPrice -= 1000
+            // venti 버튼이 눌리지 않은 경우
+                if grandeButtonPressed && tallButtonPressed { // grande 버튼이 눌린 경우
+                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
+                    sizeOptionPrice -= 1000
+                }
+            } else { // venti 버튼이 눌린 경우
+                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
+                sizeOptionPrice += 1000
+            }
+        
+        // 나머지 버튼들의 상태를 초기화합니다.
+        resetOtherButtonStates(ventiButton)
+        updateOptionAddPrice()
     }
     
+    
+    func resetOtherButtonStates(_ selectedButton: UIView) {
+        // 선택된 버튼을 제외한 나머지 버튼들의 상태를 초기화합니다.
+        if selectedButton != tallButton {
+            tallButtonPressed = false
+            updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
+        }
+        
+        if selectedButton != grandeButton {
+            grandeButtonPressed = false
+            updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
+        }
+        
+        if selectedButton != ventiButton {
+            ventiButtonPressed = false
+            updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+        }
+    }
     
     func updateButtonAppearance(for button: UIView, isPressed: Bool) {
         let borderColor = isPressed ? UIColor(named: "maincolor")?.cgColor : UIColor.lightGray.cgColor

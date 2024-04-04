@@ -26,7 +26,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가격: 0₩" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PAL-Xc-xrX">
-                                <rect key="frame" x="217" y="721" width="127" height="21"/>
+                                <rect key="frame" x="184" y="719" width="160" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -160,10 +160,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="drinkName" destination="3G8-cD-44B" id="5yG-qE-aeb"/>
+                        <outlet property="drinkName" destination="3G8-cD-44B" id="9NA-bq-oUw"/>
                         <outlet property="grandeButton" destination="uRe-fb-wjI" id="zCy-ub-930"/>
                         <outlet property="optionAddPrice" destination="PAL-Xc-xrX" id="91i-kY-Ytu"/>
-                        <outlet property="tallButton" destination="4XC-Ud-ZNE" id="adZ-LA-DOc"/>
+                        <outlet property="tallButton" destination="4XC-Ud-ZNE" id="9x4-4r-Gn5"/>
                         <outlet property="totalCount" destination="nDE-rc-5q8" id="blC-Re-IwW"/>
                         <outlet property="ventiButton" destination="3Vd-tw-FsF" id="3N5-H1-Iia"/>
                     </connections>
