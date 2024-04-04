@@ -130,6 +130,7 @@
                 <outlet property="cellCount" destination="Ya5-ZV-i59" id="Kpv-xH-A7d"/>
                 <outlet property="cellimage" destination="gZu-gT-o9E" id="lar-WL-1cm"/>
                 <outlet property="delete" destination="YM1-sR-wnM" id="2o7-uk-rIV"/>
+                <outlet property="minusButton" destination="YUM-lF-2Sh" id="sPm-ya-3be"/>
                 <outlet property="name" destination="8Rb-V2-aAx" id="tsi-Zy-ls6"/>
                 <outlet property="price" destination="JyQ-Sc-M0B" id="ozc-zw-TKY"/>
                 <outlet property="size" destination="2Pq-lG-nRq" id="s8w-7T-F81"/>

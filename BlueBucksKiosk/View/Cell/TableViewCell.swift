@@ -9,13 +9,14 @@ protocol TableViewCellDelegate: AnyObject {
 
 class TableViewCell: UITableViewCell {
     
-    @IBOutlet weak var cellimage: UIImageView!
+    @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var cellCount: UILabel!
     
     @IBOutlet weak var delete: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
     
     weak var delegate: TableViewCellDelegate?
     
@@ -26,10 +27,16 @@ class TableViewCell: UITableViewCell {
         }
     }
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCellCount()
         size.textColor = .gray
+        cellImage.layer.cornerRadius = cellImage.frame.height/2
+        cellImage.layer.borderWidth = 1
+        cellImage.clipsToBounds = true
+        cellImage.layer.borderColor = UIColor.clear.cgColor
+        minusButton.setImage(UIImage(systemName: "trash"), for: .normal)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,8 +61,12 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedDecreseButton(_ sender: Any) {
+        if count != 1 {
+            minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
+        }
         if count <= 0 {
             delegate?.deleteCell(self)
+            
         } else {
             count -= 1
         }
@@ -76,4 +87,12 @@ class TableViewCell: UITableViewCell {
         // dataSource.remove(at: indexPath.row)
         // tableView.deleteRows(at: [indexPath], with: .fade)
     }
+    func configure(with drink: Drink) {
+        name.text = drink.name.0 // 한글 이름 사용
+        cellImage.image = drink.image
+        price.text = "\(String(drink.price))원"
+        size.text = "\(drink.size.rawValue)ml"
+        cellCount.text = String(count)
+      }
+    
 }

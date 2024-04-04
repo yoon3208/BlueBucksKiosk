@@ -10,5 +10,9 @@ class CollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cellImage.layer.cornerRadius = cellImage.frame.height/2
+        cellImage.layer.borderWidth = 1
+        cellImage.clipsToBounds = true
+        cellImage.layer.borderColor = UIColor.clear.cgColor
     }
 }
