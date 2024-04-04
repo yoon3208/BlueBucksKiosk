@@ -16,6 +16,7 @@
 		37B43FE12BBAAAEA0038D52C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 37B43FE02BBAAAEA0038D52C /* .gitignore */; };
 		AB9C4A6E2BBC1EA400B1E48C /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */; };
 		AB9C4A742BBD279000B1E48C /* ModalTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */; };
+		AB9C4A7E2BBE56B600B1E48C /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		37B43FE02BBAAAEA0038D52C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTestViewController.swift; sourceTree = "<group>"; };
+		AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				37B43FD02BBAAA540038D52C /* ViewController.swift */,
 				AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */,
 				AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */,
+				AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */,
 				37B43FD22BBAAA540038D52C /* Main.storyboard */,
 				37B43FD52BBAAA550038D52C /* Assets.xcassets */,
 				37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			files = (
 				37B43FE12BBAAAEA0038D52C /* .gitignore in Resources */,
 				37B43FD92BBAAA550038D52C /* LaunchScreen.storyboard in Resources */,
+				AB9C4A7E2BBE56B600B1E48C /* CartStoryboard.storyboard in Resources */,
 				37B43FD62BBAAA550038D52C /* Assets.xcassets in Resources */,
 				37B43FD42BBAAA540038D52C /* Main.storyboard in Resources */,
 			);

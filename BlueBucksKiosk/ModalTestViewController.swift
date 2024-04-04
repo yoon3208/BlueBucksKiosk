@@ -23,7 +23,7 @@ class ModalTestViewController: UIViewController {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "CartViewController") as? CartViewController else {return}
         
         if let sheet = vc.sheetPresentationController {
-                sheet.detents = [.medium(), .large()]
+                sheet.detents = [.medium()]
         }
         
         self.present(vc, animated: true)
