@@ -7,6 +7,17 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
     
+    // 데이터 초기값 설정 후 UI에 매칭
+    var drink : Drink? {
+        didSet {
+            if let drink = drink {
+                cellImage.image = drink.image
+                name.text = drink.name.0
+                price.text = String(drink.price)
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

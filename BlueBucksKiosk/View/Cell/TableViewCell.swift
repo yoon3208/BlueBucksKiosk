@@ -1,12 +1,6 @@
 
 import UIKit
 
-protocol TableViewCellDelegate: AnyObject {
-    // drinkCount를 옵션페이지의 숫자 이름과 동일하게 맞춰야함
-    var drinkCount: Int {get}
-    func deleteCell(_ cell: TableViewCell)
-}
-
 class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
@@ -15,83 +9,49 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var cellCount: UILabel!
     
-    @IBOutlet weak var delete: UIButton!
-    @IBOutlet weak var minusButton: UIButton!
+
     
-    weak var delegate: TableViewCellDelegate?
-    
-    // 카운트 계산관련 초기값은 1, 옵션페이지에서 갯수 불러와야함
-    var count: Int = 1 {
+    //예상 변수 이름 설정
+    // var 더하기 빼기 : {(bool) -> ()}
+    // var 종료 {(bool)}
+
+    // 데이터 초기값 설정 후 UI에 매칭
+    var drink : Drink? {
         didSet {
-            refreshTextButton()
+            if let drink = drink {
+                cellImage.image = drink.image
+                name.text = drink.name.0
+                //size.text = drink.size
+                price.text = String(drink.price)
+                cellCount.text = "1"
+            }
         }
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupCellCount()
         size.textColor = .gray
         cellImage.layer.cornerRadius = cellImage.frame.height/2
         cellImage.layer.borderWidth = 1
         cellImage.clipsToBounds = true
         cellImage.layer.borderColor = UIColor.clear.cgColor
-        minusButton.setImage(UIImage(systemName: "trash"), for: .normal)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    private func setupCellCount() {
-        if let delegate = delegate {
-            count = delegate.drinkCount
-            refreshTextButton()
-        }
-    }
-    
-        
-    private func refreshTextButton() {
-        cellCount.text = String(count)
-    }
-    
-    @IBAction func tappedIncreseButton(_ sender: Any) {
-        count += 1
-        refreshTextButton()
-    }
-    
-    @IBAction func tappedDecreseButton(_ sender: Any) {
-        if count != 1 {
-            minusButton.setImage(UIImage(systemName: "minus"), for: .normal)
-        }
-        if count <= 0 {
-            delegate?.deleteCell(self)
+    // tag값에 따라 액션이 바뀌는 함수
+    @IBAction func didTappedCountButton(_ sender: UIButton) {
+        if sender.tag == 0 {
+            // 변수이름(bool) 파라미터 타입
+            // 플러스 변수이름
         } else {
-            count -= 1
+            // 마이너스 변수이름
         }
-        refreshTextButton()
+        if sender.tag == 2 {
+            // 종료하는 변수이름
+        }
     }
-    
-
-    // 삭제 버튼 액션
-    @IBAction func deleteButtonTapped(_ sender: Any) {
-        guard let tableView = self.superview as? UITableView else {
-            return
-        }
-        guard let indexPath = tableView.indexPath(for: self) else {
-            return
-        }
-        
-        // 테이블 뷰 클래스에 입력
-        // dataSource.remove(at: indexPath.row)
-        // tableView.deleteRows(at: [indexPath], with: .fade)
-    }
-    func configure(with drink: Drink) {
-        name.text = drink.name.0 // 한글 이름 사용
-        cellImage.image = drink.image
-        price.text = "\(String(drink.price))원"
-        size.text = "\(drink.size.rawValue)ml"
-        cellCount.text = String(count)
-      }
-    
 }
