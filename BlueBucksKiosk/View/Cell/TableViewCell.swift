@@ -66,7 +66,6 @@ class TableViewCell: UITableViewCell {
         }
         if count <= 0 {
             delegate?.deleteCell(self)
-            
         } else {
             count -= 1
         }
