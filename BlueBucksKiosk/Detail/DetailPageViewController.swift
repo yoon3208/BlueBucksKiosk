@@ -30,6 +30,12 @@ class DetailPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+
+      override func viewWillAppear(_ animated: Bool) {
+          super.viewWillAppear(animated)
+
 
         //이전 뷰컨트롤러에 있는 정보 가져오기
         imageView.image = Image
@@ -47,7 +53,7 @@ class DetailPageViewController: UIViewController {
     //segue로 다음 뷰컨트롤러에 정보 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // if segue.identifier == "세그웨이 식별자 이름"
-        if segue.identifier == "showOptionSelection"{
+        if segue.identifier == "showNextView"{
             //if let nextVC = segue.destination as? 다음 뷰 컨트롤러 이름
             if let nextVC = segue.destination as? OptionViewController {
                 nextVC.name = name
@@ -59,7 +65,7 @@ class DetailPageViewController: UIViewController {
     //버튼을 누르면 다음 뷰컨트롤러로 이동 및 정보 전달
     @IBAction func tappedInto(_ sender: UIButton) {
         //performSegue(withIdentifier: "세그웨이 식별자 이름", sender: self)
-        performSegue(withIdentifier: "showOptionSelection", sender: self)
+        performSegue(withIdentifier: "showNextView", sender: self)
 
     }
 
