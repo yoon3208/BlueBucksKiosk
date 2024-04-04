@@ -7,28 +7,6 @@
 
 import UIKit
 
-struct Drink {
-    var name: (String, String)
-    var image: UIImage
-    var description: String
-    var price: Int
-    var category: Category
-    var size: Size
-}
-
-enum Category {
-    case espresso
-    case frappuccino
-    case teavana
-    case etc
-}
-
-enum Size: Int {
-    case tall = 355
-    case grande = 473
-    case venti = 591
-}
-
 class OptionViewController: UIViewController {
     
     @IBOutlet weak var drinkName: UILabel! {
@@ -38,7 +16,7 @@ class OptionViewController: UIViewController {
     }
     var addedOption: String = "" // 추가된 옵션을 저장할 변수
     
-    var selectedName: String = "아이스 아메리카노"
+    var selectedName: String = ""
     
     @IBOutlet weak var tallButton: UIView!
     
@@ -136,7 +114,7 @@ class OptionViewController: UIViewController {
         }
     }
     
-    var selectedPrice: Int = 4500 {
+    var selectedPrice: Int = 0 {
         didSet {
             updateOptionAddPrice()
         }
@@ -308,4 +286,11 @@ class OptionViewController: UIViewController {
         totalCount.text = "\(count)"
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "" {
+//            if let optionVC = segue.destination as? OptionViewController {
+//                optionVC.selectedName = addedOption
+//            }
+//        }
+//    }
 }
