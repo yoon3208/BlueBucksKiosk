@@ -36,6 +36,8 @@ class OptionViewController: UIViewController {
             drinkName.text = "\(selectedName)"
         }
     }
+    var addedOption: String = "" // 추가된 옵션을 저장할 변수
+    
     var selectedName: String = "아이스 아메리카노"
     
     @IBOutlet weak var tallButton: UIView!
@@ -59,7 +61,8 @@ class OptionViewController: UIViewController {
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "tall" : ""
     }
     
     
@@ -88,6 +91,8 @@ class OptionViewController: UIViewController {
                 // venti 버튼으로 인한 추가 값인 1000을 더합니다.
                 sizeOptionPrice += 500
             }
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "grande" : ""
         
         // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(grandeButton)
@@ -117,6 +122,8 @@ class OptionViewController: UIViewController {
                 // venti 버튼으로 인한 추가 값인 1000을 더합니다.
                 sizeOptionPrice += 1000
             }
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "venti" : ""
         
         // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(ventiButton)
@@ -202,6 +209,9 @@ class OptionViewController: UIViewController {
         
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+        
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "tall" : ""
     }
     
     @objc func toggleGrandeButton(_ sender: UITapGestureRecognizer) {
@@ -228,6 +238,8 @@ class OptionViewController: UIViewController {
                 // venti 버튼으로 인한 추가 값인 1000을 더합니다.
                 sizeOptionPrice += 500
             }
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "grande" : ""
         
         // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(grandeButton)
@@ -259,6 +271,8 @@ class OptionViewController: UIViewController {
                 // venti 버튼으로 인한 추가 값인 1000을 더합니다.
                 sizeOptionPrice += 1000
             }
+        // addedOption 업데이트
+                addedOption = tallButtonPressed ? "venti" : ""
         
         // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(ventiButton)
@@ -295,5 +309,3 @@ class OptionViewController: UIViewController {
     }
     
 }
-
-
