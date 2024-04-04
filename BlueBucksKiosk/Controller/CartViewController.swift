@@ -8,11 +8,11 @@
 import UIKit
 
 class CartViewController: UIViewController {
-    
+    // MARK: - @IBOutlet
     @IBOutlet weak var menuCnt: UILabel!
     @IBOutlet weak var menuPriceSum: UILabel!
     @IBOutlet weak var purchaseBtn: UIButton!
-    
+    // MARK: - @IBAction
     @IBAction func allClearBtnPressed(_ sender: Any) {
         showCancelAlert()
     }
@@ -24,7 +24,7 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+    // MARK: - function
     func showCancelAlert() {
         let alert = UIAlertController(title: nil, message: "전체 삭제 하시겠습니까?", preferredStyle: .alert)
         
