@@ -14,113 +14,90 @@ class OptionViewController: UIViewController {
             drinkName.text = "\(selectedName)"
         }
     }
-    var addedOption: String = "" // 추가된 옵션을 저장할 변수
+    var addedOption: String = "" // 추가된 옵션
     
-    var selectedName: String = ""
+    var selectedName: String = "" // 선택된 음료 명
     
-    @IBOutlet weak var tallButton: UIView!
-    
-    @IBOutlet weak var grandeButton: UIView!
-    
-    @IBOutlet weak var ventiButton: UIView!
+    @IBOutlet weak var tallButton: UIView! // 톨 사이즈 버튼(UIView)
+    @IBOutlet weak var grandeButton: UIView! // 그란데 사이즈 버튼(UIView)
+    @IBOutlet weak var ventiButton: UIView! // 벤티 사이즈 버튼(UIView)
     
     var tallButtonPressed: Bool = false
     var grandeButtonPressed: Bool = false
     var ventiButtonPressed: Bool = false
     
-    @IBAction func tallButton(_ sender: Any) {
+    @IBAction func tallButton(_ sender: Any) { // 톨 사이즈 버튼(UIButton)
         tallButtonPressed.toggle()
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
+        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "tall" : ""
+        addedOption = tallButtonPressed ? "tall" : "" // 버튼이 눌렸을 경우 "tall", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
     }
     
     
-    @IBAction func grandeButton(_ sender: Any) {
-        // 이전에 grande 버튼이 눌렸던 상태를 저장합니다.
-        
+    @IBAction func grandeButton(_ sender: Any) { // 그란데 사이즈 버튼(UIButton)
         grandeButtonPressed.toggle()
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
+        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         tallButtonPressed = false
         updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-   
-        if !grandeButtonPressed { 
+        if !grandeButtonPressed {
             sizeOptionPrice -= 500
-            // grande 버튼이 눌리지 않은 경우
-                if ventiButtonPressed && tallButtonPressed { // venti, tall 버튼이 눌린 경우
-                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
-                    sizeOptionPrice -= 500
-                }
-            } else { // venti 버튼이 눌린 경우
-                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
-                sizeOptionPrice += 500
+            if ventiButtonPressed && tallButtonPressed {
+                sizeOptionPrice -= 500
             }
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "grande" : ""
+        } else {
+            sizeOptionPrice += 500
+        }
+        addedOption = grandeButtonPressed ? "grande" : "" // 버튼이 눌렸을 경우 "grande", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
         
-        // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(grandeButton)
         updateOptionAddPrice()
     }
     
-    @IBAction func ventiButton(_ sender: Any) {
-        
+    @IBAction func ventiButton(_ sender: Any) { // 벤티 사이즈 버튼(UIButton)
         ventiButtonPressed.toggle()
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         tallButtonPressed = false
         updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-      
-        if !ventiButtonPressed { 
-            sizeOptionPrice -= 1000
-            // venti 버튼이 눌리지 않은 경우
-                if grandeButtonPressed && tallButtonPressed{ // grande 버튼이 눌린 경우
-                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
-                    sizeOptionPrice -= 1000
-                }
-            } else { // venti 버튼이 눌린 경우
-                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
-                sizeOptionPrice += 1000
-            }
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "venti" : ""
         
-        // 나머지 버튼들의 상태를 초기화합니다.
+        if !ventiButtonPressed {
+            sizeOptionPrice -= 1000
+            if grandeButtonPressed && tallButtonPressed{
+                sizeOptionPrice -= 1000
+            }
+        } else {
+            sizeOptionPrice += 1000
+        }
+        addedOption = ventiButtonPressed ? "venti" : "" // 버튼이 눌렸을 경우 "venti", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
+        
         resetOtherButtonStates(ventiButton)
         updateOptionAddPrice()
     }
     
-    @IBOutlet weak var optionAddPrice: UILabel! {
+    @IBOutlet weak var optionAddPrice: UILabel! { // 옵션이 더해진 총 가격
         didSet {
             updateOptionAddPrice()
         }
     }
     
-    var selectedPrice: Int = 0 {
+    var selectedPrice: Int = 0 { // 선택된 음료 가격
         didSet {
             updateOptionAddPrice()
         }
     }
     
-    var sizeOptionPrice: Int = 0 // 사이즈 옵션에 대한 추가 가격
+    var sizeOptionPrice: Int = 0 // 사이즈 옵션 추가금
     
     @IBOutlet weak var totalCount: UILabel!
     var count: Int = 1 {
@@ -129,19 +106,19 @@ class OptionViewController: UIViewController {
         }
     }
     
-    func updateOptionAddPrice() {
-           let totalPrice = (selectedPrice + sizeOptionPrice) * count
-           optionAddPrice.text = "가격: \(totalPrice)"
-       }
+    func updateOptionAddPrice() { // 선택된 음료와 옵션 추가금을 더한 총 가격을 업데이트
+        let totalPrice = (selectedPrice + sizeOptionPrice) * count
+        optionAddPrice.text = "가격: \(totalPrice)"
+    }
     
-    @IBAction func addCount(_ sender: Any) {
+    @IBAction func addCount(_ sender: Any) { // 수량 증가 버튼
         count += 1 // totalCount 값 증가
         updateTotalCountLabel() // totalCount 레이블 업데이트
     }
     
-    @IBAction func minusCount(_ sender: Any) {
+    @IBAction func minusCount(_ sender: Any) { // 수량 감소 버튼
         if count > 1 {
-            count -= 1 // totalCount 값 감소 (단, 최소값은 1로 유지)
+            count -= 1 // totalCount 값 감소 (최소값 1로 유지)
             updateTotalCountLabel() // totalCount 레이블 업데이트
         }
     }
@@ -149,12 +126,13 @@ class OptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateTotalCountLabel()
-        configureGestureRecognizers()
+        updateTotalCountLabel() // 총 수량 업데이트
+        configureGestureRecognizers() // 각 버튼에 대한 제스처 인식기
         
-        tallButton.layer.cornerRadius = 5
-        tallButton.layer.borderWidth = 1
-        tallButton.layer.borderColor = UIColor.lightGray.cgColor
+        // 컵 사이즈 버튼(UIView)에 대한 레이어 속성 설정
+        tallButton.layer.cornerRadius = 5 // 버튼의 둥근 모서리 값
+        tallButton.layer.borderWidth = 1 // 버튼의 테두리 두께 값
+        tallButton.layer.borderColor = UIColor.lightGray.cgColor // 버튼의 테두리 색상
         
         grandeButton.layer.cornerRadius = 5
         grandeButton.layer.borderWidth = 1
@@ -168,98 +146,79 @@ class OptionViewController: UIViewController {
     func configureGestureRecognizers() {
         let tallTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTallButton(_:)))
         tallButton.addGestureRecognizer(tallTapGesture)
+        // 톨 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleTallButton(_:) 메서드 실행
         
         let grandeTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleGrandeButton(_:)))
         grandeButton.addGestureRecognizer(grandeTapGesture)
+        // 그란데 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleGrandeButton(_:) 메서드 실행
         
         let ventiTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleVentiButton(_:)))
         ventiButton.addGestureRecognizer(ventiTapGesture)
+        // 벤티 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleVentiButton(_:) 메서드 실행
     }
     
     @objc func toggleTallButton(_ sender: UITapGestureRecognizer) {
-        // tall 버튼의 상태를 변경합니다.
         tallButtonPressed.toggle()
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
+        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "tall" : ""
+        addedOption = tallButtonPressed ? "tall" : ""  // 버튼이 눌렸을 경우 "tall", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
     }
     
     @objc func toggleGrandeButton(_ sender: UITapGestureRecognizer) {
-        
-        // grande 버튼의 상태를 변경합니다.
         grandeButtonPressed.toggle()
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
+        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         tallButtonPressed = false
         updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        
         ventiButtonPressed = false
         updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
         
-        if !grandeButtonPressed { 
+        if !grandeButtonPressed {
             sizeOptionPrice -= 500
-            // grande 버튼이 눌리지 않은 경우
-                if ventiButtonPressed && tallButtonPressed { // venti, tall 버튼이 눌린 경우
-                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
-                    sizeOptionPrice -= 500
-                }
-            } else { // venti 버튼이 눌린 경우
-                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
-                sizeOptionPrice += 500
+            if ventiButtonPressed && tallButtonPressed {
+                sizeOptionPrice -= 500
             }
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "grande" : ""
+        } else {
+            sizeOptionPrice += 500
+        }
+        addedOption = grandeButtonPressed ? "grande" : "" // 버튼이 눌렸을 경우 "grande", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
         
-        // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(grandeButton)
         updateOptionAddPrice()
         
     }
     
     @objc func toggleVentiButton(_ sender: UITapGestureRecognizer) {
-        
-        // venti 버튼의 상태를 변경합니다.
         ventiButtonPressed.toggle()
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
         
-        // 다른 버튼들의 상태를 초기화합니다.
         tallButtonPressed = false
         updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        
         grandeButtonPressed = false
         updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
         
-        if !ventiButtonPressed { 
+        if !ventiButtonPressed { // venti 버튼이 눌리지 않은 경우
             sizeOptionPrice -= 1000
-            // venti 버튼이 눌리지 않은 경우
-                if grandeButtonPressed && tallButtonPressed { // grande 버튼이 눌린 경우
-                    // grande 버튼으로 인한 추가된 값인 500을 취소합니다.
-                    sizeOptionPrice -= 1000
-                }
-            } else { // venti 버튼이 눌린 경우
-                // venti 버튼으로 인한 추가 값인 1000을 더합니다.
-                sizeOptionPrice += 1000
+            if grandeButtonPressed && tallButtonPressed { // grande 버튼, tall 버튼 둘 다 눌려 있는 경우 추가된 값 다시 취소
+                sizeOptionPrice -= 1000
             }
-        // addedOption 업데이트
-                addedOption = tallButtonPressed ? "venti" : ""
+        } else {
+            sizeOptionPrice += 1000
+        }
+        addedOption = ventiButtonPressed ? "venti" : "" // 버튼이 눌렸을 경우 "venti", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
         
-        // 나머지 버튼들의 상태를 초기화합니다.
         resetOtherButtonStates(ventiButton)
         updateOptionAddPrice()
     }
     
     
     func resetOtherButtonStates(_ selectedButton: UIView) {
-        // 선택된 버튼을 제외한 나머지 버튼들의 상태를 초기화합니다.
+        
         if selectedButton != tallButton {
             tallButtonPressed = false
             updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
@@ -286,11 +245,11 @@ class OptionViewController: UIViewController {
         totalCount.text = "\(count)"
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "" {
-//            if let optionVC = segue.destination as? OptionViewController {
-//                optionVC.selectedName = addedOption
-//            }
-//        }
-//    }
+    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if segue.identifier == "" {
+    //            if let optionVC = segue.destination as? OptionViewController {
+    //                optionVC.selectedName = addedOption
+    //            }
+    //        }
+    //    }
 }
