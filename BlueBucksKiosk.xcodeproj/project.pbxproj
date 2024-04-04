@@ -12,7 +12,6 @@
 		375150E32BBBEBF400AC8472 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375150E22BBBEBF400AC8472 /* MainViewController.swift */; };
 		375150E92BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375150E82BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift */; };
 		3751510B2BBD1AF700AC8472 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751510A2BBD1AF700AC8472 /* MainView.swift */; };
-		3751510E2BBD1C3700AC8472 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3751510D2BBD1C3700AC8472 /* SnapKit */; };
 		375151112BBD3DB000AC8472 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375151102BBD3DB000AC8472 /* UIColor+Extension.swift */; };
 		37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCC2BBAAA540038D52C /* AppDelegate.swift */; };
 		37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */; };
@@ -25,12 +24,13 @@
 		4DBA30C72BBE80C9006E1FBE /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBA30C32BBE80C8006E1FBE /* TableViewCell.xib */; };
 		4DBA30C82BBE80C9006E1FBE /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DBA30C42BBE80C8006E1FBE /* CollectionViewCell.xib */; };
 		4DBA30C92BBE80C9006E1FBE /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBA30C52BBE80C8006E1FBE /* CollectionViewCell.swift */; };
-		F1AD0BFB2BBBD5FE009F42F1 /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */; };
-		F1AD0BFF2BBBD697009F42F1 /* DetailPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */; };
-		F1AD0C012BBD33F3009F42F1 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0C002BBD33F3009F42F1 /* Drink.swift */; };
 		AB9C4A6E2BBC1EA400B1E48C /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */; };
 		AB9C4A742BBD279000B1E48C /* ModalTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */; };
 		AB9C4A7E2BBE56B600B1E48C /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */; };
+		AB9C4A812BBE864B00B1E48C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AB9C4A802BBE864B00B1E48C /* SnapKit */; };
+		F1AD0BFB2BBBD5FE009F42F1 /* DetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */; };
+		F1AD0BFF2BBBD697009F42F1 /* DetailPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */; };
+		F1AD0C012BBD33F3009F42F1 /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1AD0C002BBD33F3009F42F1 /* Drink.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,12 +53,12 @@
 		4DBA30C32BBE80C8006E1FBE /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		4DBA30C42BBE80C8006E1FBE /* CollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
 		4DBA30C52BBE80C8006E1FBE /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
-		F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailPage.storyboard; sourceTree = "<group>"; };
-		F1AD0C002BBD33F3009F42F1 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTestViewController.swift; sourceTree = "<group>"; };
 		AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
+		F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageViewController.swift; sourceTree = "<group>"; };
+		F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailPage.storyboard; sourceTree = "<group>"; };
+		F1AD0C002BBD33F3009F42F1 /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3751510E2BBD1C3700AC8472 /* SnapKit in Frameworks */,
+				AB9C4A812BBE864B00B1E48C /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +79,8 @@
 				375150E22BBBEBF400AC8472 /* MainViewController.swift */,
 				F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */,
 				2E36C7952BBCEF090004E6CF /* OptionViewController.swift */,
+				AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */,
+				AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -91,6 +93,7 @@
 				375150E82BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift */,
 				F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */,
 				2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */,
+				AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,9 +141,6 @@
 				375150E02BBBEAF000AC8472 /* View */,
 				375150DF2BBBEAEE00AC8472 /* Controller */,
 				37B43FD02BBAAA540038D52C /* ViewController.swift */,
-				AB9C4A732BBD279000B1E48C /* ModalTestViewController.swift */,
-				AB9C4A6D2BBC1EA400B1E48C /* CartViewController.swift */,
-				AB9C4A7D2BBE56B600B1E48C /* CartStoryboard.storyboard */,
 				37B43FD22BBAAA540038D52C /* Main.storyboard */,
 				37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */,
 				37B43FD52BBAAA550038D52C /* Assets.xcassets */,
@@ -177,7 +177,7 @@
 			);
 			name = BlueBucksKiosk;
 			packageProductDependencies = (
-				3751510D2BBD1C3700AC8472 /* SnapKit */,
+				AB9C4A802BBE864B00B1E48C /* SnapKit */,
 			);
 			productName = BlueBucksKiosk;
 			productReference = 37B43FC92BBAAA540038D52C /* BlueBucksKiosk.app */;
@@ -208,7 +208,7 @@
 			);
 			mainGroup = 37B43FC02BBAAA540038D52C;
 			packageReferences = (
-				3751510C2BBD1C3700AC8472 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				AB9C4A7F2BBE864B00B1E48C /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 37B43FCA2BBAAA540038D52C /* Products */;
 			projectDirPath = "";
@@ -489,7 +489,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3751510C2BBD1C3700AC8472 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		AB9C4A7F2BBE864B00B1E48C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -500,9 +500,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3751510D2BBD1C3700AC8472 /* SnapKit */ = {
+		AB9C4A802BBE864B00B1E48C /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3751510C2BBD1C3700AC8472 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = AB9C4A7F2BBE864B00B1E48C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
