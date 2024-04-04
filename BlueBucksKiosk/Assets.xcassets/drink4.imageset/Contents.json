@@ -1,0 +1,38 @@
+{
+  "images" : [
+    {
+      "filename" : "Iced Earl Grey Brewed Tea.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Iced English Breakfast Brewed Tea.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Iced Jeju Green Tea.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "filename" : "Iced Mint Blend Brewed Tea.jpg",
+      "idiom" : "iphone",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Iced Youthberry â¢ Brewed Tea.jpg",
+      "idiom" : "iphone",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Iced Yuja Mint Tea.jpg",
+      "idiom" : "iphone",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
