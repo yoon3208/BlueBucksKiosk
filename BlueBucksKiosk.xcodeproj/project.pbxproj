@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E36C7962BBCEF090004E6CF /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E36C7952BBCEF090004E6CF /* OptionViewController.swift */; };
+		2E36C7982BBCEF280004E6CF /* OptionStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */; };
 		375150E32BBBEBF400AC8472 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375150E22BBBEBF400AC8472 /* MainViewController.swift */; };
 		375150E92BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375150E82BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift */; };
 		3751510B2BBD1AF700AC8472 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751510A2BBD1AF700AC8472 /* MainView.swift */; };
 		3751510E2BBD1C3700AC8472 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3751510D2BBD1C3700AC8472 /* SnapKit */; };
 		375151112BBD3DB000AC8472 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375151102BBD3DB000AC8472 /* UIColor+Extension.swift */; };
-		2E36C7962BBCEF090004E6CF /* OptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E36C7952BBCEF090004E6CF /* OptionViewController.swift */; };
-		2E36C7982BBCEF280004E6CF /* OptionStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */; };
 		37B43FCD2BBAAA540038D52C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCC2BBAAA540038D52C /* AppDelegate.swift */; };
 		37B43FCF2BBAAA540038D52C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */; };
 		37B43FD12BBAAA540038D52C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B43FD02BBAAA540038D52C /* ViewController.swift */; };
@@ -27,12 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E36C7952BBCEF090004E6CF /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
+		2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionStoryboard.storyboard; sourceTree = "<group>"; };
 		375150E22BBBEBF400AC8472 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		375150E82BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineSegmentedControl.swift; sourceTree = "<group>"; };
 		3751510A2BBD1AF700AC8472 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		375151102BBD3DB000AC8472 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		2E36C7952BBCEF090004E6CF /* OptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionViewController.swift; sourceTree = "<group>"; };
-		2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OptionStoryboard.storyboard; sourceTree = "<group>"; };
 		37B43FC92BBAAA540038D52C /* BlueBucksKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlueBucksKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B43FCC2BBAAA540038D52C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37B43FCE2BBAAA540038D52C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +64,7 @@
 			children = (
 				375150E22BBBEBF400AC8472 /* MainViewController.swift */,
 				F1AD0BFA2BBBD5FE009F42F1 /* DetailPageViewController.swift */,
+				2E36C7952BBCEF090004E6CF /* OptionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -74,6 +75,7 @@
 				3751510A2BBD1AF700AC8472 /* MainView.swift */,
 				375150E82BBC5BCE00AC8472 /* UnderlineSegmentedControl.swift */,
 				F1AD0BFE2BBBD697009F42F1 /* DetailPage.storyboard */,
+				2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,8 +127,6 @@
 				37B43FD72BBAAA550038D52C /* LaunchScreen.storyboard */,
 				37B43FD52BBAAA550038D52C /* Assets.xcassets */,
 				37B43FDA2BBAAA550038D52C /* Info.plist */,
-				2E36C7952BBCEF090004E6CF /* OptionViewController.swift */,
-				2E36C7972BBCEF280004E6CF /* OptionStoryboard.storyboard */,
 			);
 			path = BlueBucksKiosk;
 			sourceTree = "<group>";
