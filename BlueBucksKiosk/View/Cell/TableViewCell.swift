@@ -42,10 +42,10 @@ class TableViewCell: UITableViewCell {
                 
                 size.textColor = .gray
                 cellCount.text = String(productCount)
-                cellImage.layer.cornerRadius = cellImage.frame.height/2
-                cellImage.layer.borderWidth = 1
+                cellImage.layer.cornerRadius = 72
+                cellImage.layer.borderWidth = 3
                 cellImage.clipsToBounds = true
-                cellImage.layer.borderColor = UIColor.clear.cgColor
+                cellImage.layer.borderColor = UIColor.maincolor.cgColor
             }
         }
     }

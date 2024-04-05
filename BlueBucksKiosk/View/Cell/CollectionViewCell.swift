@@ -10,15 +10,14 @@ class CollectionViewCell: UICollectionViewCell {
     // 데이터 초기값 설정 후 UI에 매칭
     var drink : Drink? {
         didSet {
+            layoutSubviews()
             if let drink = drink {
                 cellImage.image = drink.image
                 name.text = drink.name.0
                 price.text = String(drink.price.0)
             }
-            cellImage.layer.cornerRadius = cellImage.frame.height/2
-            cellImage.layer.borderWidth = 1
-            cellImage.clipsToBounds = true
-            cellImage.layer.borderColor = UIColor.clear.cgColor
+            
+            
         }
     }
     
@@ -26,5 +25,13 @@ class CollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        cellImage.layer.cornerRadius = 72
+        cellImage.layer.borderWidth = 2
+        cellImage.clipsToBounds = true
+        cellImage.layer.borderColor = UIColor.maincolor.cgColor
     }
 }
