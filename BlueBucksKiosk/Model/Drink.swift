@@ -22,9 +22,3 @@ enum Category {
     case teavana
     case etc
 }
-
-enum Size {
-    case tall
-    case grande
-    case venti
-}
