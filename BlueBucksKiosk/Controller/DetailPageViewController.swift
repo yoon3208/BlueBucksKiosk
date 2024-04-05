@@ -16,9 +16,9 @@ class DetailPageViewController: UIViewController {
     @IBOutlet var descriptionText: UILabel!
     
     //뷰 컨트롤러의 UI 요소들을 그 값에 맞게 업데이트
-    var drink: Drink?{
-        didSet{
-            if let drink = drink{
+    var drink: Drink? {
+        didSet {
+            if let drink = drink {
                 self.imageView.image = drink.image
                 self.nameLabel.text = drink.name.0
                 self.priceLabel.text = "\(drink.price)"
@@ -35,9 +35,8 @@ class DetailPageViewController: UIViewController {
 
     //segue로 다음 뷰컨트롤러에 정보 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showNextView"{
-            if let nextVC = segue.destination as? OptionViewController{
-                let nextVC = OptionViewController()
+        if segue.identifier == "showNextView" {
+            if let nextVC = segue.destination as? OptionViewController {
                 nextVC.drink = self.drink
             }
         }
