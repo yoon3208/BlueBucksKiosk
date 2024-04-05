@@ -17,13 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        let mainViewController = MainViewController()
-            
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = mainViewController
-        self.window = window
-        window.makeKeyAndVisible()
+            // let mainViewController = MainViewController()
+            let storyboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
+            let cartVC = storyboard.instantiateViewController(withIdentifier: "CartViewController")
+            let window = UIWindow(windowScene: windowScene)
+            window.rootViewController = cartVC
+            self.window = window
+            window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -8,6 +8,8 @@
 import UIKit
 
 class CartViewController: UIViewController {
+    var productManager = ProductManager()
+    
     // MARK: - @IBOutlet
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var menuCnt: UILabel!
@@ -21,21 +23,27 @@ class CartViewController: UIViewController {
     @IBAction func purchaseBtnPressed(_ sender: Any) {
         purchaseAlert()
     }
-    
+
     // 초기값 세팅
     var productList: [Product] = [] {
         didSet {
             self.menuCnt.text = "\(productList.count)개"
             let totalPrice = calculateTotalPrice(for: productList)
+            self.menuPriceSum.text = "\(totalPrice)원"
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 테이블 뷰 관련
+
+        // 테이블 뷰 관련 설정
         cartTableView.delegate = self
         cartTableView.dataSource = self
+        
+        // productManager로부터 상품 목록 데이터를 받아옴
+        productList = productManager.getProductList()
     }
+
     // MARK: - function
     func calculateTotalPrice(for productList: [Product]) -> Int {
         return productList.reduce(0) { total, product in
@@ -54,7 +62,7 @@ class CartViewController: UIViewController {
     
     func updateCartInfo() {
         let totalItems = productList.count
-//        let totalPrice = productList.reduce(0) { $0 + $1.drink.price * $1.count }
+        //        let totalPrice = productList.reduce(0) { $0 + $1.drink.price * $1.count }
         let totalPrice = calculateTotalPrice(for: productList)
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(totalPrice)원"
@@ -98,7 +106,7 @@ class CartViewController: UIViewController {
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
         
-        //        let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+        // let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
         // 이후 메인화면으로 전환 추가
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.dismiss(animated: true, completion: nil)
@@ -123,57 +131,53 @@ extension CartViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShoppingCartCell", for: indexPath) as? TableViewCell else {
-                // 캐스팅 실패 시, fatalError() 또는 적절한 대체 셀 반환
-                fatalError("ShoppingCartCell로 캐스팅할 수 없습니다.")
-            }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
+        // 캐스팅 실패 시, fatalError() 호출 대신 안전한 대체 셀 반환
+        print("ShoppingCartCell로 캐스팅할 수 없습니다.")
+        return UITableViewCell()
+    }
         
-        let product = productList[indexPath.row]
-        cell.configure(with: product)
+//        let product =
+//        cell.configure(with: product)
+        cell.product = productList[indexPath.row]
         
-        
-        //증가 클로저
+//         증가 클로저
         cell.increaseClosure = { [weak self] in
             guard let self = self else { return }
-            self.productList[indexPath.row].count += 1
-            // 필요한 UI 업데이트
-            
-            tableView.reloadRows(at: [indexPath], with: .none)
-            self.updateCartInfo()
-        }
-        
-        // 감소 클로저
-        cell.decreaseClosure = { [weak self, weak tableView] in
-            guard let self = self else { return }
-            if self.productList[indexPath.row].count > 0 {
-                self.productList[indexPath.row].count -= 1
-                
-                if self.productList[indexPath.row].count == 0 {
-                    // 수량이 0이면 리스트에서 삭제
-                    self.productList.remove(at: indexPath.row)
-                    tableView?.deleteRows(at: [indexPath], with: .fade)
-                } else {
-                    // 아닐경우 단순 업데이트
-                    tableView?.reloadRows(at: [indexPath], with: .none)
-                }
-                // UI 업데이트
+            if self.productManager.increaseDrinkCount(product: self.productList[indexPath.row]) {
+                tableView.reloadRows(at: [indexPath], with: .none)
                 self.updateCartInfo()
             }
         }
-        // 삭제 클로저
+        
+//         감소 클로저
+        cell.decreaseClosure = { [weak self, weak tableView] in
+            guard let self = self else { return }
+            if self.productManager.decreaseDrinkCount(product: self.productList[indexPath.row]) {
+                tableView?.reloadRows(at: [indexPath], with: .none)
+            } else {
+                // 수량이 1이하일 때는 해당 상품을 삭제
+                if self.productManager.deleteProduct(product: self.productList[indexPath.row]) {
+                    tableView?.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            self.updateCartInfo()
+        }
+        
+//         삭제 클로저
         cell.deleteClosure = { [weak self, weak tableView] in
             guard let self = self else { return }
             
             // 데이터 모델에서 셀에 해당하는 데이터 삭제
-            self.productList.remove(at: indexPath.row)
-            
-            // 테이블 뷰에서 해당 셀 삭제
-            tableView?.deleteRows(at: [indexPath], with: .fade)
+            if self.productManager.deleteProduct(product: self.productList[indexPath.row]) {
+                // 테이블 뷰에서 해당 셀 삭제
+                tableView?.deleteRows(at: [indexPath], with: .fade)
+            }
             
             // 카트 정보 업데이트
             self.updateCartInfo()
         }
-        //
+        
         return cell
     }
 }
