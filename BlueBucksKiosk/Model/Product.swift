@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Cart {
+struct Product {
     let drink: Drink
-    let count: Int
+    var count: Int
     let size: Size
 }
 
