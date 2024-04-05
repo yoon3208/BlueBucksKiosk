@@ -9,21 +9,29 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var cellCount: UILabel!
     
-
-    
     //예상 변수 이름 설정
-    // var 더하기 빼기 : {(bool) -> ()}
-    // var 종료 {(bool)}
-
+    // var 더하기 빼기 : ((bool) -> ())?
+    // var 종료 ((bool) -> ())?
+    var calculateClosure: ((Bool) -> ())?
+    var closeClosure: ((Bool) -> ())?
+    
     // 데이터 초기값 설정 후 UI에 매칭
-    var drink : Drink? {
+    // To-do: 데이터 변경 후 코드 수정필요
+    var drink : [(Drink, Int)]? {
         didSet {
-            if let drink = drink {
+            if let drink = drink, let (drink, count) = drink.first {
                 cellImage.image = drink.image
                 name.text = drink.name.0
-                //size.text = drink.size
+                switch drink.size {
+                            case .tall:
+                                size.text = "Tall"
+                            case .grande:
+                                size.text = "Grande"
+                            case .venti:
+                                size.text = "Venti"
+                            }
                 price.text = String(drink.price)
-                cellCount.text = "1"
+                cellCount.text = String(count) // To-do : 장바구니에 담긴 갯수 가져오기
             }
         }
     }
@@ -46,12 +54,16 @@ class TableViewCell: UITableViewCell {
     @IBAction func didTappedCountButton(_ sender: UIButton) {
         if sender.tag == 0 {
             // 변수이름(bool) 파라미터 타입
-            // 플러스 변수이름
+            calculateClosure?(false)
         } else {
             // 마이너스 변수이름
+            calculateClosure?(true)
         }
         if sender.tag == 2 {
             // 종료하는 변수이름
+            closeClosure?(false)
         }
     }
+    
+    
 }
