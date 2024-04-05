@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,21 +27,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7N-Vt-Jiq">
-                                <rect key="frame" x="42.666666666666657" y="758" width="308" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="308" id="BRu-35-KDV"/>
-                                    <constraint firstAttribute="height" constant="50" id="zuf-Ft-tau"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="담기"/>
-                                <connections>
-                                    <action selector="tappedInto:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="F1r-uc-jVZ"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="smN-zl-ori">
                                 <rect key="frame" x="65" y="465.33333333333331" width="263" height="65.666666666666686"/>
                                 <subviews>
@@ -58,27 +44,44 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W7N-Vt-Jiq">
+                                <rect key="frame" x="29.666666666666657" y="773" width="334" height="36"/>
+                                <color key="backgroundColor" name="maincolor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="334" id="DO9-hS-vmu"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="36" id="GRH-eU-8PA"/>
+                                    <constraint firstAttribute="height" constant="36" id="mO7-5t-6oe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="담기"/>
+                                <connections>
+                                    <action selector="tappedInto:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="F1r-uc-jVZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="W7N-Vt-Jiq" secondAttribute="bottom" constant="10" id="0dI-0E-RHy"/>
+                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="centerX" secondItem="smN-zl-ori" secondAttribute="centerX" id="0pb-9x-IML"/>
                             <constraint firstItem="smN-zl-ori" firstAttribute="top" secondItem="ztk-Ag-KiK" secondAttribute="bottom" constant="10" id="Dvf-iB-uL4"/>
+                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="29.5" id="Jsc-fl-6jj"/>
                             <constraint firstItem="smN-zl-ori" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="65" id="Kz3-19-yPn"/>
+                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NF5-8e-fhf"/>
                             <constraint firstItem="ztk-Ag-KiK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="65" id="NTd-pm-0nJ"/>
+                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Nlz-82-WAl"/>
                             <constraint firstItem="xuH-iH-yhV" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="61" id="PNn-3c-ekC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ztk-Ag-KiK" secondAttribute="trailing" constant="65" id="Qlx-pl-QTd"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xuH-iH-yhV" secondAttribute="trailing" constant="43" id="WhK-q3-hTm"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="W7N-Vt-Jiq" secondAttribute="trailing" constant="29.5" id="aCa-Pc-ir0"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="smN-zl-ori" secondAttribute="trailing" constant="65" id="cRF-1A-TRH"/>
-                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="42.5" id="crE-e2-J95"/>
                             <constraint firstItem="xuH-iH-yhV" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="e4n-Ai-1ty"/>
                             <constraint firstItem="ztk-Ag-KiK" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="iME-Yb-krl"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="W7N-Vt-Jiq" secondAttribute="trailing" constant="42.5" id="lW3-jb-q2P"/>
-                            <constraint firstItem="W7N-Vt-Jiq" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="mRq-pu-QIr"/>
                             <constraint firstItem="ztk-Ag-KiK" firstAttribute="top" secondItem="xuH-iH-yhV" secondAttribute="bottom" constant="24" id="mlH-VG-0OV"/>
                             <constraint firstItem="xuH-iH-yhV" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="43" id="swM-NZ-Pta"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="W7N-Vt-Jiq" secondAttribute="bottom" constant="10" id="w3u-m3-dk3"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="xuH-iH-yhV" secondAttribute="bottom" constant="412" id="xZV-Pr-pth"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="W7N-Vt-Jiq" secondAttribute="bottom" constant="9" id="zQW-IF-a56"/>
                         </constraints>
                     </view>
                     <connections>
@@ -95,11 +98,11 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="maincolor">
+            <color red="0.0" green="0.6588235294117647" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
