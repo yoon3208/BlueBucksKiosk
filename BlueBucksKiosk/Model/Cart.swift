@@ -10,4 +10,11 @@ import Foundation
 struct Cart {
     let drink: Drink
     let count: Int
+    let size: Size
+}
+
+enum Size {
+    case tall
+    case grande
+    case venti
 }
