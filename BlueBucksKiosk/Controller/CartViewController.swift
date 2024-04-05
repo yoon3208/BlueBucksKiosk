@@ -45,14 +45,14 @@ class CartViewController: UIViewController {
         cartTable.dataSource = self
     }
     // MARK: - function
-    // 개수와 가격 업데이트
-    //    func updateCartInfo() {
-    //        let totalItems = CartDataModel.count
-    //        let totalPrice = CartDataModel.reduce(0) { $0 + $1.price }
-    //
-    //        menuCnt.text = "\(totalItems)개"
-    //        menuPriceSum.text = "\(totalPrice)원"
-    //    }
+    // func updateCartInfo() {
+//    guard let drinks = self.drinks else { return }
+//    let totalItems = drinks.count
+//    let totalPrice = drinks.reduce(0) { $0 + $1.price }
+//
+//    menuCnt.text = "\(totalItems)개"
+//    menuPriceSum.text = "\(totalPrice)원"
+//}
     
     func showCancelAlert() {
         let alert = UIAlertController(title: nil, message: "전체 삭제 하시겠습니까?", preferredStyle: .alert)
@@ -128,7 +128,9 @@ extension CartViewController: UITableViewDataSource{
             guard let self = self else { return }
             self.drinks[indexPath.row].count += 1
             // 필요한 UI 업데이트
+            
             tableView.reloadRows(at: [indexPath], with: .none)
+            self.updateCartInfo()
         }
         
         // 감소 클로저
@@ -136,13 +138,15 @@ extension CartViewController: UITableViewDataSource{
             guard let self = self else { return }
             if self.drinks[indexPath.row].count > 0 {
                 self.drinks[indexPath.row].count -= 1
-                // 필요한 UI 업데이트
+                
                 tableView?.reloadRows(at: [indexPath], with: .none)
             } else {
                 // 삭제 로직
                 self.drinks.remove(at: indexPath.row)
                 tableView?.deleteRows(at: [indexPath], with: .fade)
             }
+            // 필요한 UI 업데이트
+            self.updateCartInfo()
         }
         cell.deletionClosure = { [weak self, weak tableView] in
             guard let self = self else { return }
@@ -152,6 +156,9 @@ extension CartViewController: UITableViewDataSource{
             
             // 테이블 뷰에서 해당 셀 삭제
             tableView?.deleteRows(at: [indexPath], with: .fade)
+            
+            // 카트 정보 업데이트
+            self.updateCartInfo()
         }
         //
         return cell
