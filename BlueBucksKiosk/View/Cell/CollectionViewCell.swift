@@ -13,7 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
             if let drink = drink, let (drink, count) = drink.first  {
                 cellImage.image = drink.image
                 name.text = drink.name.0
-                price.text = String(drink.price)
+                price.text = String(drink.price.0)
             }
         }
     }

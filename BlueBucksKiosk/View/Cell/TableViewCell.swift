@@ -25,12 +25,15 @@ class TableViewCell: UITableViewCell {
                 switch drink.size {
                             case .tall:
                                 size.text = "Tall"
+                    price.text = String(drink.price.0)
                             case .grande:
                                 size.text = "Grande"
+                    price.text = String(drink.price.1)
                             case .venti:
                                 size.text = "Venti"
+                    price.text = String(drink.price.2)
                             }
-                price.text = String(drink.price)
+                
                 cellCount.text = String(count) // To-do : 장바구니에 담긴 갯수 가져오기
             }
         }
