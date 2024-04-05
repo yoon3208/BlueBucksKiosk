@@ -32,11 +32,6 @@ class DetailPageViewController: UIViewController {
         
     }
 
-      override func viewWillAppear(_ animated: Bool) {
-          super.viewWillAppear(animated)
-
-
-      }
 
     //segue로 다음 뷰컨트롤러에 정보 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
