@@ -14,6 +14,7 @@ class DetailPageViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet var descriptionText: UILabel!
+    @IBOutlet var sizeDescription: UILabel!
     
     //뷰 컨트롤러의 UI 요소들을 그 값에 맞게 업데이트
     var drink: Drink? {
@@ -21,8 +22,14 @@ class DetailPageViewController: UIViewController {
             if let drink = drink {
                 self.imageView.image = drink.image
                 self.nameLabel.text = drink.name.0
-                self.priceLabel.text = "\(drink.price)"
+                self.priceLabel.text = "\(drink.price)₩"
                 self.descriptionText.text = drink.description
+                self.sizeDescription.text = """
+                <사이즈별 가격 안내>
+                Tall size : \(drink.price.0)₩
+                Grande size : \(drink.price.1)₩
+                Venti size : \(drink.price.2)₩
+                """
             }
         }
     }

@@ -28,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="smN-zl-ori">
-                                <rect key="frame" x="65" y="465.33333333333331" width="263" height="65.666666666666686"/>
+                                <rect key="frame" x="65" y="465.33333333333326" width="263" height="106"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제품 상세 설명" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVQ-Cu-Mly">
                                         <rect key="frame" x="0.0" y="0.0" width="263" height="20.333333333333332"/>
@@ -36,8 +36,14 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="음료 사이즈별 가격 설명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loY-ri-Fz8">
+                                        <rect key="frame" x="0.0" y="40.333333333333371" width="263" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0₩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GP-2J-9aj">
-                                        <rect key="frame" x="0.0" y="40.333333333333371" width="263" height="25.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="80.666666666666686" width="263" height="25.333333333333329"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -89,6 +95,7 @@
                         <outlet property="imageView" destination="xuH-iH-yhV" id="OcQ-VD-ucT"/>
                         <outlet property="nameLabel" destination="ztk-Ag-KiK" id="CGS-XE-p2W"/>
                         <outlet property="priceLabel" destination="7GP-2J-9aj" id="2PT-hc-KPx"/>
+                        <outlet property="sizeDescription" destination="loY-ri-Fz8" id="8mu-Ee-ycy"/>
                         <outlet property="stackView" destination="smN-zl-ori" id="S8V-aU-rji"/>
                     </connections>
                 </viewController>
