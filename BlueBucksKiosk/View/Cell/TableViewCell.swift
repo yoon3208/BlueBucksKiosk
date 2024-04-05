@@ -12,29 +12,35 @@ class TableViewCell: UITableViewCell {
     //예상 변수 이름 설정
     // var 더하기 빼기 : ((bool) -> ())?
     // var 종료 ((bool) -> ())?
-    var calculateClosure: ((Bool) -> ())?
-    var closeClosure: ((Bool) -> ())?
+    var increaseClosure: (() -> Void)?
+    var decreaseClosure: (() -> Void)?
+    var deleteClosure: (() -> Void)?
     
+    
+    static let identifier = "ShoppingCartCell"
     // 데이터 초기값 설정 후 UI에 매칭
     // To-do: 데이터 변경 후 코드 수정필요
-    var drink : [(Drink, Int)]? {
+    var product : Product? {
         didSet {
-            if let drink = drink, let (drink, count) = drink.first {
-                cellImage.image = drink.image
-                name.text = drink.name.0
-                switch drink.size {
-                            case .tall:
-                                size.text = "Tall"
-                    price.text = String(drink.price.0)
-                            case .grande:
-                                size.text = "Grande"
-                    price.text = String(drink.price.1)
-                            case .venti:
-                                size.text = "Venti"
-                    price.text = String(drink.price.2)
-                            }
+            if let product = product {
+                let productDrink = product.drink
+                let productSize = product.size
+                let productCount = product.count
+                cellImage.image = productDrink.image
+                name.text = productDrink.name.0
+                switch productSize {
+                case .tall:
+                    size.text = "Tall"
+                    price.text = String(productDrink.price.0)
+                case .grande:
+                    size.text = "Grande"
+                    price.text = String(productDrink.price.1)
+                case .venti:
+                    size.text = "Venti"
+                    price.text = String(productDrink.price.2)
+                }
                 
-                cellCount.text = String(count) // To-do : 장바구니에 담긴 갯수 가져오기
+                cellCount.text = String(productCount) // To-do : 장바구니에 담긴 갯수 가져오기
             }
         }
     }
@@ -58,16 +64,14 @@ class TableViewCell: UITableViewCell {
         if sender.tag == 0 {
             // 변수이름(bool) 파라미터 타입
             // 빼기
-            calculateClosure?(false)
+            decreaseClosure?()
         } else {
             // 더하기
-            calculateClosure?(true)
+            increaseClosure?()
         }
         if sender.tag == 2 {
             // 셀 삭제 변수이름
-            closeClosure?(false)
+            deleteClosure?()
         }
     }
-    
-    
 }
