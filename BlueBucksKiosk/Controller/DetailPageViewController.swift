@@ -37,7 +37,7 @@ class DetailPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showNextView" {
             if let nextVC = segue.destination as? OptionViewController {
-                nextVC.drink = self.drink
+//                nextVC.drink = self.drink
             }
         }
     }
