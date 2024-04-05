@@ -8,9 +8,9 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var price: UILabel!
     
     // 데이터 초기값 설정 후 UI에 매칭
-    var drink : Drink? {
+    var drink : [(Drink, Int)]? {
         didSet {
-            if let drink = drink {
+            if let drink = drink, let (drink, count) = drink.first  {
                 cellImage.image = drink.image
                 name.text = drink.name.0
                 price.text = String(drink.price)

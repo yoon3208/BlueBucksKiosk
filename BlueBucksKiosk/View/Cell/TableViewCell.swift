@@ -54,13 +54,14 @@ class TableViewCell: UITableViewCell {
     @IBAction func didTappedCountButton(_ sender: UIButton) {
         if sender.tag == 0 {
             // 변수이름(bool) 파라미터 타입
+            // 빼기
             calculateClosure?(false)
         } else {
-            // 마이너스 변수이름
+            // 더하기
             calculateClosure?(true)
         }
         if sender.tag == 2 {
-            // 종료하는 변수이름
+            // 셀 삭제 변수이름
             closeClosure?(false)
         }
     }
