@@ -40,7 +40,12 @@ class TableViewCell: UITableViewCell {
                     price.text = String(productDrink.price.2)
                 }
                 
-                cellCount.text = String(productCount) // To-do : 장바구니에 담긴 갯수 가져오기
+                size.textColor = .gray
+                cellCount.text = String(productCount)
+                cellImage.layer.cornerRadius = cellImage.frame.height/2
+                cellImage.layer.borderWidth = 1
+                cellImage.clipsToBounds = true
+                cellImage.layer.borderColor = UIColor.clear.cgColor
             }
         }
     }
@@ -48,11 +53,8 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        size.textColor = .gray
-        cellImage.layer.cornerRadius = cellImage.frame.height/2
-        cellImage.layer.borderWidth = 1
-        cellImage.clipsToBounds = true
-        cellImage.layer.borderColor = UIColor.clear.cgColor
+        
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
