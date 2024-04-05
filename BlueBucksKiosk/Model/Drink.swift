@@ -14,7 +14,6 @@ struct Drink {
     let description: String
     let price: (Int, Int, Int)
     let category: Category
-    var size: Size?
 }
 
 enum Category {
