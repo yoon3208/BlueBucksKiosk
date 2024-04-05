@@ -42,17 +42,17 @@ class DetailPageViewController: UIViewController {
 
     //segue로 다음 뷰컨트롤러에 정보 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showNextView" {
-            if let nextVC = segue.destination as? OptionViewController {
-                nextVC.drink = self.drink
-            }
+        if segue.identifier == "OptionView" {
+//            if let nextVC = segue.destination as? OptionViewController {
+//                nextVC.drink = self.drink
+//            }
         }
     }
 
     //버튼을 누르면 다음 뷰컨트롤러로 이동 및 정보 전달
     @IBAction func tappedInto(_ sender: UIButton) {
         //performSegue(withIdentifier: "세그웨이 식별자 이름", sender: self)
-        performSegue(withIdentifier: "showNextView", sender: self)
+        performSegue(withIdentifier: "OptionView", sender: self)
 
     }
 
