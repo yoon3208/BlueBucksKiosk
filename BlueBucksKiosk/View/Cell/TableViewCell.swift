@@ -39,7 +39,6 @@ class TableViewCell: UITableViewCell {
                     size.text = "Venti"
                     price.text = String(productDrink.price.2)
                 }
-                
                 size.textColor = .gray
                 cellCount.text = String(productCount)
                 cellImage.layer.cornerRadius = 8
