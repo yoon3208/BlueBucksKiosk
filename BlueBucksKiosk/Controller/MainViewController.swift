@@ -32,6 +32,12 @@ final class MainViewController: UIViewController {
         setSegmentedControl()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mainView.cartBtn.clipsToBounds = true
+        mainView.cartBtn.layer.cornerRadius = mainView.cartBtn.layer.frame.size.width / 2
+    }
+    
+    // MARK: - methods
     private func initDatas() {
         drinks = self.drinkManager.getDrinksOfCategory(category: .espresso)
     }
