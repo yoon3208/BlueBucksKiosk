@@ -23,7 +23,7 @@ class MainView: UIView {
         return cv
     }()
     
-    let shoppingBasketBtn: UIButton = {
+    let cartBtn: UIButton = {
         let btn = UIButton()
         btn.setTitle("장바구니로 이동", for: .normal)
         btn.setTitleColor(.lightText, for: .normal)
@@ -49,14 +49,14 @@ class MainView: UIView {
     private func setUI() {
         self.backgroundColor = .white
         
-        shoppingBasketBtn.clipsToBounds = true
-        shoppingBasketBtn.layer.cornerRadius = 8
+        cartBtn.clipsToBounds = true
+        cartBtn.layer.cornerRadius = 8
     }
     
     private func setConstraint() {
         self.addSubview(categoriesSC)
         self.addSubview(drinkCollectionView)
-        self.addSubview(shoppingBasketBtn)
+        self.addSubview(cartBtn)
         
         categoriesSC.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
@@ -67,10 +67,10 @@ class MainView: UIView {
         drinkCollectionView.snp.makeConstraints {
             $0.top.equalTo(categoriesSC.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(shoppingBasketBtn.snp.top).offset(-10)
+            $0.bottom.equalTo(cartBtn.snp.top).offset(-10)
         }
         
-        shoppingBasketBtn.snp.makeConstraints {
+        cartBtn.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(40)
             $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }

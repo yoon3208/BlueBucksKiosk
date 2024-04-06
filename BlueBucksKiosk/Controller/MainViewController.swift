@@ -37,8 +37,8 @@ final class MainViewController: UIViewController {
     }
     
     private func setAddTarget() {
+        self.mainView.cartBtn.addTarget(self, action: #selector(didTappedCartBtn), for: .touchUpInside)
         self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
-        self.mainView.shoppingBasketBtn.addTarget(self, action: #selector(didTappedShoppingBasketBtn), for: .touchUpInside)
     }
     
     private func setCollectionView() {
@@ -72,8 +72,10 @@ final class MainViewController: UIViewController {
         self.mainView.drinkCollectionView.reloadData()
     }
     
-    @objc private func didTappedShoppingBasketBtn(button: UIButton) {
-        // To Do - 추가 된 데이터와 함께 장바구니로 이동
+    @objc private func didTappedCartBtn(button: UIButton) {
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController")
+        self.present(cartViewController, animated: true)
     }
 }
 
