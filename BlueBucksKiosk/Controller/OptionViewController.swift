@@ -38,6 +38,7 @@ class OptionViewController: UIViewController {
         self.drinkNameEng.text = drink?.name.1
         
         updateTotalCountLabel()
+        
     }
     
     // MARK: - IBActions
@@ -143,6 +144,10 @@ class OptionViewController: UIViewController {
         } else {
             price = 0 // 옵션이 선택되지 않았을 때 가격 초기화
         }
-        optionAddPrice.text = "\(price)₩"
+        let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            if let formattedPrice = numberFormatter.string(from: NSNumber(value: price)) {
+                optionAddPrice.text = "\(formattedPrice)원" // 이 부분을 변경하여 가격을 표시합니다.
+            }
     }
 }
