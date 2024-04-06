@@ -25,12 +25,12 @@ class MainView: UIView {
     
     let cartBtn: UIButton = {
         let btn = UIButton()
-        btn.setTitle("장바구니로 이동", for: .normal)
-        btn.setTitleColor(.lightText, for: .normal)
         btn.backgroundColor = .bluebucks
-        var buttonConfig = UIButton.Configuration.tinted()
-        buttonConfig.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
-        btn.configuration = buttonConfig
+        btn.setImage(UIImage(systemName: "cart"), for: .normal)
+        btn.tintColor = .white
+        var btnConfig = UIButton.Configuration.tinted()
+        btnConfig.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        btn.configuration = btnConfig
         return btn
     }()
     
@@ -48,9 +48,6 @@ class MainView: UIView {
     
     private func setUI() {
         self.backgroundColor = .white
-        
-        cartBtn.clipsToBounds = true
-        cartBtn.layer.cornerRadius = 8
     }
     
     private func setConstraint() {
@@ -67,12 +64,13 @@ class MainView: UIView {
         drinkCollectionView.snp.makeConstraints {
             $0.top.equalTo(categoriesSC.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(cartBtn.snp.top).offset(-10)
+            $0.bottom.equalToSuperview()
         }
         
         cartBtn.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(40)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            $0.width.height.equalTo(66)
+            $0.trailing.equalToSuperview().offset(-26)
+            $0.bottom.equalToSuperview().offset(-50)
         }
     }
 }
