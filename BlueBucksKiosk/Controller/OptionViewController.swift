@@ -20,8 +20,7 @@ class OptionViewController: UIViewController {
     
     var drink: Drink? {
         didSet {
-            self.drinkNameKor.text = drink?.name.0
-            self.drinkNameEng.text = drink?.name.1
+           
         }
     }
     
@@ -39,6 +38,9 @@ class OptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.drinkNameKor.text = drink?.name.0
+        self.drinkNameEng.text = drink?.name.1
         
         updateTotalCountLabel()
     }
@@ -89,7 +91,8 @@ class OptionViewController: UIViewController {
             manager.addProduct(product: product)
             let mainVC = MainViewController()
             mainVC.modalPresentationStyle = .fullScreen
-            self.present(mainVC, animated: true)
+//            self.present(mainVC, animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
