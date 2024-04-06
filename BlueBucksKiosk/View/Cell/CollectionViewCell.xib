@@ -25,8 +25,8 @@
                                     <constraint firstAttribute="width" secondItem="oEV-dM-6DO" secondAttribute="height" multiplier="1:1" id="vcE-tu-eKg"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv2-qC-2hZ">
-                                <rect key="frame" x="25" y="138" width="33" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv2-qC-2hZ">
+                                <rect key="frame" x="63.666666666666657" y="138" width="33" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="MMV-eu-SwE"/>
                                 </constraints>
@@ -34,8 +34,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr9-fj-uSL">
-                                <rect key="frame" x="25" y="159" width="29" height="13.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr9-fj-uSL">
+                                <rect key="frame" x="65.666666666666671" y="159" width="29" height="13.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,11 +44,11 @@
                         <constraints>
                             <constraint firstItem="oEV-dM-6DO" firstAttribute="leading" secondItem="wgq-fx-JSh" secondAttribute="leading" constant="25" id="7MV-QV-Z6y"/>
                             <constraint firstAttribute="trailing" secondItem="oEV-dM-6DO" secondAttribute="trailing" constant="25" id="8oa-f0-PMF"/>
+                            <constraint firstItem="Bv2-qC-2hZ" firstAttribute="centerX" secondItem="oEV-dM-6DO" secondAttribute="centerX" id="EIn-8c-gvu"/>
                             <constraint firstItem="Bv2-qC-2hZ" firstAttribute="top" secondItem="oEV-dM-6DO" secondAttribute="bottom" constant="15" id="HW7-ev-dzo"/>
                             <constraint firstItem="oEV-dM-6DO" firstAttribute="top" secondItem="wgq-fx-JSh" secondAttribute="top" constant="13" id="Kco-LZ-Kv3"/>
                             <constraint firstItem="cr9-fj-uSL" firstAttribute="top" secondItem="Bv2-qC-2hZ" secondAttribute="bottom" constant="5" id="UHV-ZM-ICU"/>
-                            <constraint firstItem="cr9-fj-uSL" firstAttribute="leading" secondItem="Bv2-qC-2hZ" secondAttribute="leading" id="okj-9d-MTM"/>
-                            <constraint firstItem="Bv2-qC-2hZ" firstAttribute="leading" secondItem="oEV-dM-6DO" secondAttribute="leading" id="sUY-7y-JDl"/>
+                            <constraint firstItem="cr9-fj-uSL" firstAttribute="centerX" secondItem="Bv2-qC-2hZ" secondAttribute="centerX" id="iYE-qm-zmk"/>
                         </constraints>
                     </view>
                 </subviews>
