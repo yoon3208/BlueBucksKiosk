@@ -85,7 +85,7 @@ extension MainViewController: UICollectionViewDelegate {
         let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
         detailViewController.drink = drinks[indexPath.row]
         
-        self.present(detailViewController, animated: true)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
