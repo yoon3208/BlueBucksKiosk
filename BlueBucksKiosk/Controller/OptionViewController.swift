@@ -69,21 +69,26 @@ class OptionViewController: UIViewController {
         }
     
     @IBAction func updateCount(_ sender: UIButton) {
-        // 옵션을 선택하지 않은 경우 또는 현재 버튼이 선택된 옵션과 동일한 경우에만 카운트 업데이트
-        if index == -1 || sender.tag == index {
-            if sender.tag != index {
-                if count > 0 {
-                    count -= 1
-                }
-            } else {
-                count += 1
-            } // 카운트가 1보다 큰 경우에만 실행
-            updateTotalCountLabel()
-            let isOptionChosen = index != -1
-            updateOptionAddPrice(isOptionChosen: isOptionChosen)
-        }
-    }
-    
+        // 옵션을 선택하지 않은 경우 변경을 허용하지 않음
+          if index == -1 {
+              return
+          }
+
+          // 감소 버튼이 눌렸을 때
+        if sender.tag == 3 {
+              if count > 0 {
+                  count -= 1
+              }
+          }
+          // 증가 버튼이 눌렸을 때
+        else if sender.tag == 4{
+              count += 1
+          }
+
+          updateTotalCountLabel()
+          let isOptionChosen = index != -1
+          updateOptionAddPrice(isOptionChosen: isOptionChosen)
+      }
     @IBAction func addToCart(_ sender: UIButton) {
         // 옵션을 선택하지 않은 경우에 알림 표시
         if index == -1 {
