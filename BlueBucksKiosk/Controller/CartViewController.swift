@@ -11,6 +11,7 @@ class CartViewController: UIViewController {
     private let productManager = ProductManager()
     
     // MARK: - @IBOutlet
+    @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var menuCnt: UILabel!
     @IBOutlet weak var menuPriceSum: UILabel!
@@ -26,7 +27,19 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // purchaseBtn 색상 변경
+        purchaseBtn.setTitle("결제하기", for: .normal)
+        purchaseBtn.setTitleColor(.lightText, for: .normal)
+        purchaseBtn.backgroundColor = .bluebucks
+        var buttonConfig = UIButton.Configuration.tinted()
+        buttonConfig.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
+        purchaseBtn.configuration = buttonConfig
+        purchaseBtn.clipsToBounds = true
+        purchaseBtn.layer.cornerRadius = 8
+        // cartTableView
+        cartTableView.layer.cornerRadius = 8
+        // menuView
+        menuView.layer.cornerRadius = 8
         // 테이블 뷰 관련 설정
         cartTableView.delegate = self
         cartTableView.dataSource = self

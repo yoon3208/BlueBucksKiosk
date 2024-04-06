@@ -96,11 +96,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-0u-SxL">
-                                <rect key="frame" x="16" y="360" width="361" height="34"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
+                                <rect key="frame" x="16" y="360" width="361" height="36"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Zci-Dj-H0G"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="결제하기"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="결제하기"/>
                                 <connections>
                                     <action selector="purchaseBtnPressed:" destination="GX7-AV-gkc" eventType="touchUpInside" id="Exc-eg-Hnx"/>
                                 </connections>
@@ -114,7 +117,6 @@
                             <constraint firstItem="cwo-0u-SxL" firstAttribute="leading" secondItem="5eZ-I3-d4t" secondAttribute="leading" constant="16" id="6PK-bA-1bV"/>
                             <constraint firstItem="OrQ-K9-TjF" firstAttribute="leading" secondItem="2UX-jM-wRr" secondAttribute="trailing" constant="8" id="7Pc-jV-OBv"/>
                             <constraint firstItem="OrQ-K9-TjF" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="A4d-xL-agp"/>
-                            <constraint firstItem="cwo-0u-SxL" firstAttribute="top" secondItem="jt8-wB-CGK" secondAttribute="bottom" constant="8" id="Chr-pu-SLW"/>
                             <constraint firstItem="dxk-Z8-t9f" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="F1H-D7-eEa"/>
                             <constraint firstItem="2UX-jM-wRr" firstAttribute="leading" secondItem="5eZ-I3-d4t" secondAttribute="leading" constant="16" id="PxZ-1R-WnY"/>
                             <constraint firstItem="5eZ-I3-d4t" firstAttribute="trailing" secondItem="XFC-3d-puO" secondAttribute="trailing" constant="16" id="SYi-tp-qmr"/>
@@ -130,6 +132,7 @@
                         <outlet property="cartTableView" destination="27q-kc-ien" id="7FG-Vj-g6z"/>
                         <outlet property="menuCnt" destination="OrQ-K9-TjF" id="PV8-95-ud0"/>
                         <outlet property="menuPriceSum" destination="XFC-3d-puO" id="zFX-CW-MA9"/>
+                        <outlet property="menuView" destination="jt8-wB-CGK" id="4MP-es-v4g"/>
                         <outlet property="purchaseBtn" destination="cwo-0u-SxL" id="SO9-xO-pZz"/>
                     </connections>
                 </viewController>
@@ -142,9 +145,6 @@
         <image name="xmark.bin" catalog="system" width="128" height="92"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
