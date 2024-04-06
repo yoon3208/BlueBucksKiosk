@@ -30,7 +30,7 @@ final class MainViewController: UIViewController {
         setAddTarget()
         setNavigation()
         setCollectionView()
-        initSegmentedControl()
+        setSegmentedControl()
     }
     
     private func initDatas() {
@@ -54,13 +54,19 @@ final class MainViewController: UIViewController {
         self.mainView.drinkCollectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
     
-    private func initSegmentedControl() {
+    private func setSegmentedControl() {
         self.mainView.categoriesSC.selectedSegmentIndex = 0
         
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
                                                           for: .normal)
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
                                                            .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+    }
+    
+    @objc private func didTappedCartBtn(button: UIButton) {
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        self.present(cartViewController, animated: true)
     }
     
     @objc private func didChangedSCValue(segment: UISegmentedControl) {
@@ -75,12 +81,6 @@ final class MainViewController: UIViewController {
             drinks = self.drinkManager.getDrinksOfCategory(category: .etc)
         }
         self.mainView.drinkCollectionView.reloadData()
-    }
-    
-    @objc private func didTappedCartBtn(button: UIButton) {
-        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
-        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
-        self.present(cartViewController, animated: true)
     }
 }
 
