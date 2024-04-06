@@ -18,12 +18,6 @@ class OptionViewController: UIViewController {
     
     private let manager = ProductManager()
     
-    var drink: Drink? {
-        didSet {
-           
-        }
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet weak var tallBtn: UIButton!
     @IBOutlet weak var grandeBtn: UIButton!
