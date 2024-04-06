@@ -32,7 +32,6 @@ class TableViewCell: UITableViewCell {
                 let productCount = product.count
                 let numberFormatter = NumberFormatter()
                 numberFormatter.numberStyle = .decimal
-                
                 cellImage.image = productDrink.image
                 name.text = productDrink.name.0
                 switch productSize {
