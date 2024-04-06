@@ -15,7 +15,6 @@ class TableViewCell: UITableViewCell {
     var increaseClosure: (() -> Void)?
     var decreaseClosure: (() -> Void)?
     var deleteClosure: (() -> Void)?
-
     
     static let identifier = "ShoppingCartCell"
     // 데이터 초기값 설정 후 UI에 매칭
@@ -29,18 +28,23 @@ class TableViewCell: UITableViewCell {
                 cellImage.image = productDrink.image
                 name.text = productDrink.name.0
                 switch productSize {
-                            case .tall:
-                                size.text = "Tall"
+                case .tall:
+                    size.text = "Tall"
                     price.text = String(productDrink.price.0)
-                            case .grande:
-                                size.text = "Grande"
+                case .grande:
+                    size.text = "Grande"
                     price.text = String(productDrink.price.1)
-                            case .venti:
-                                size.text = "Venti"
+                case .venti:
+                    size.text = "Venti"
                     price.text = String(productDrink.price.2)
-                            }
+                }
                 
-                cellCount.text = String(productCount) // To-do : 장바구니에 담긴 갯수 가져오기
+                size.textColor = .gray
+                cellCount.text = String(productCount)
+                cellImage.layer.cornerRadius = 72
+                cellImage.layer.borderWidth = 3
+                cellImage.clipsToBounds = true
+                cellImage.layer.borderColor = UIColor.maincolor.cgColor
             }
         }
     }
@@ -48,11 +52,6 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        size.textColor = .gray
-        cellImage.layer.cornerRadius = cellImage.frame.height/2
-        cellImage.layer.borderWidth = 1
-        cellImage.clipsToBounds = true
-        cellImage.layer.borderColor = UIColor.clear.cgColor
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
