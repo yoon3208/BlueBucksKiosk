@@ -16,8 +16,6 @@ class CollectionViewCell: UICollectionViewCell {
                 name.text = drink.name.0
                 price.text = String(drink.price.0)
             }
-            
-            
         }
     }
     
@@ -29,7 +27,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        cellImage.layer.cornerRadius = 72
+        cellImage.layer.cornerRadius = 70
         cellImage.layer.borderWidth = 2
         cellImage.clipsToBounds = true
         cellImage.layer.borderColor = UIColor.bluebucks.cgColor
