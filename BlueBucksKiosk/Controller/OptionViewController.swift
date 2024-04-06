@@ -43,19 +43,29 @@ class OptionViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func selectedButtonTapped(_ sender: UIButton) {
-        [tallBtn, grandeBtn, ventiBtn].forEach { button in
-            if sender === button {
-                button.isSelected.toggle()
-                index = sender.tag
-            } else {
-                button.isSelected = false
+        // count가 0일 때만 count 값을 1로 설정합니다.
+            if count == 0 {
+                count = 1
             }
-            updateButtonAppearance(button)
+
+            // 버튼을 순회하면서 선택된 버튼과 나머지 버튼을 처리합니다.
+            [tallBtn, grandeBtn, ventiBtn].forEach { button in
+                if sender === button {
+                    // 선택된 버튼인 경우
+                    button.isSelected = true
+                    index = sender.tag // 선택된 버튼의 태그 값을 index에 할당합니다.
+                } else {
+                    // 선택되지 않은 버튼인 경우
+                    button.isSelected = false
+                }
+                updateButtonAppearance(button) // 버튼의 외관을 업데이트합니다.
+            }
+
+            updateSize() // 선택된 사이즈를 업데이트합니다.
+            updateTotalCountLabel() // 총 수량 레이블을 업데이트합니다.
+            let isOptionChosen = index != -1
+            updateOptionAddPrice(isOptionChosen: isOptionChosen) // 옵션에 따른 가격을 업데이트합니다.
         }
-        updateSize()
-        let isOptionChosen = index != -1
-        updateOptionAddPrice(isOptionChosen: isOptionChosen)
-    }
     
     @IBAction func updateCount(_ sender: UIButton) {
         // 옵션을 선택하지 않은 경우 또는 현재 버튼이 선택된 옵션과 동일한 경우에만 카운트 업데이트
@@ -133,6 +143,6 @@ class OptionViewController: UIViewController {
         } else {
             price = 0 // 옵션이 선택되지 않았을 때 가격 초기화
         }
-        optionAddPrice.text = "가격: \(price)"
+        optionAddPrice.text = "\(price)₩"
     }
 }
