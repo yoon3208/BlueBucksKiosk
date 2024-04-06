@@ -29,7 +29,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         // purchaseBtn 색상 변경
         purchaseBtn.setTitle("결제하기", for: .normal)
-        purchaseBtn.setTitleColor(.lightText, for: .normal)
+        purchaseBtn.setTitleColor(.white, for: .normal)
         purchaseBtn.backgroundColor = .bluebucks
         var buttonConfig = UIButton.Configuration.tinted()
         buttonConfig.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
