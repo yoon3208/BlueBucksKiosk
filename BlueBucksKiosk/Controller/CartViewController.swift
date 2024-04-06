@@ -16,6 +16,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var menuCnt: UILabel!
     @IBOutlet weak var menuPriceSum: UILabel!
     @IBOutlet weak var purchaseBtn: UIButton!
+    @IBOutlet weak var allClearBtn: UIButton!
     // MARK: - @IBAction
     @IBAction func allClearBtnPressed(_ sender: Any) {
         showCancelAlert()
@@ -36,6 +37,8 @@ class CartViewController: UIViewController {
         purchaseBtn.configuration = buttonConfig
         purchaseBtn.clipsToBounds = true
         purchaseBtn.layer.cornerRadius = 8
+        // allClearBtn
+        allClearBtn.layer.cornerRadius = 8
         // cartTableView
         cartTableView.layer.cornerRadius = 8
         // menuView
@@ -43,7 +46,9 @@ class CartViewController: UIViewController {
         // 테이블 뷰 관련 설정
         cartTableView.delegate = self
         cartTableView.dataSource = self
-        
+        // menuCnt, menuPriceSum 설정
+        menuCnt.textColor = .bluebucks
+        menuPriceSum.textColor = .bluebucks
         // 초기값 세팅
         updateCartInfo()
     }
@@ -68,6 +73,7 @@ class CartViewController: UIViewController {
         let productList = productManager.getProductList()
         let totalItems = productList.count
         let totalPrice = calculateTotalPrice(for: productList)
+        
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(totalPrice)원"
     }
@@ -116,7 +122,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-
+    
     
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
@@ -158,7 +164,7 @@ extension CartViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
-            // 캐스팅 실패 시, fatalError() 호출 대신 안전한 대체 셀 반환
+            // 캐스팅 실패 시 안전한 대체 셀 반환
             print("ShoppingCartCell로 캐스팅할 수 없습니다.")
             return UITableViewCell()
         }
