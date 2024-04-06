@@ -62,10 +62,10 @@ final class MainViewController: UIViewController {
     private func setSegmentedControl() {
         self.mainView.categoriesSC.selectedSegmentIndex = 0
         
-        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
-                                                          for: .normal)
-        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
-                                                           .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+        self.mainView.categoriesSC.setTitleTextAttributes([.foregroundColor: UIColor.gray,
+                                                           .font: UIFont.systemFont(ofSize: 14)], for: .normal)
+        self.mainView.categoriesSC.setTitleTextAttributes([.foregroundColor: UIColor.bluebucks,
+                                                           .font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .selected)
     }
     
     @objc private func didTappedCartBtn(button: UIButton) {
