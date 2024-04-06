@@ -10,7 +10,6 @@ import UIKit
 class OptionViewController: UIViewController {
     
     // MARK: - Properties
-    
     var price = 0
     var count = 0
     var index = -1
@@ -87,7 +86,6 @@ class OptionViewController: UIViewController {
             manager.addProduct(product: product)
             let mainVC = MainViewController()
             mainVC.modalPresentationStyle = .fullScreen
-//            self.present(mainVC, animated: true)
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
@@ -99,12 +97,6 @@ class OptionViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.borderWidth = button.isSelected ? 2 : 1
         button.layer.borderColor = borderColor
-    }
-    
-    func resetOtherButtons(_ selectedButton: UIButton) {
-        [tallBtn, grandeBtn, ventiBtn].forEach { button in
-            button.layer.borderColor = (button == selectedButton && button.isSelected) ? UIColor.bluebucks.cgColor : UIColor.lightGray.cgColor
-        }
     }
     
     func updateSize() {
@@ -126,7 +118,7 @@ class OptionViewController: UIViewController {
     
     func updateOptionAddPrice(isOptionChosen: Bool) {
         guard let drink = drink else {
-            optionAddPrice.text = "가격: N/A"
+            optionAddPrice.text = ""
             return
         }
         if isOptionChosen {
