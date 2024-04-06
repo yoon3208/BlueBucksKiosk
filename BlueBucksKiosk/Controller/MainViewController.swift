@@ -74,13 +74,19 @@ final class MainViewController: UIViewController {
     
     @objc private func didTappedCartBtn(button: UIButton) {
         let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
-        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController")
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
         self.present(cartViewController, animated: true)
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailStoryboard = UIStoryboard(name: "DetailPage", bundle: .main)
+        let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
+        detailViewController.drink = drinks[indexPath.row]
+        
+        self.present(detailViewController, animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
