@@ -14,7 +14,11 @@ class CollectionViewCell: UICollectionViewCell {
             if let drink = drink {
                 cellImage.image = drink.image
                 name.text = drink.name.0
-                price.text = String(drink.price.0)
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                let tallPrice = drink.price.0
+                let tallPriceResult = numberFormatter.string(for: tallPrice)
+                price.text = "\(tallPriceResult!)원"
             }
         }
     }

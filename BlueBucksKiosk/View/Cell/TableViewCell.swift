@@ -20,6 +20,8 @@ class TableViewCell: UITableViewCell {
     var deleteClosure: (() -> Void)?
     
     static let identifier = "ShoppingCartCell"
+    
+    
     // 데이터 초기값 설정 후 UI에 매칭
     // To-do: 데이터 변경 후 코드 수정필요
     var product : Product? {
@@ -28,18 +30,27 @@ class TableViewCell: UITableViewCell {
                 let productDrink = product.drink
                 let productSize = product.size
                 let productCount = product.count
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                
                 cellImage.image = productDrink.image
                 name.text = productDrink.name.0
                 switch productSize {
                 case .tall:
                     size.text = "Tall"
-                    price.text = String(productDrink.price.0)
+                    let tallPrice = productDrink.price.0
+                    let tallPriceResult = numberFormatter.string(for: tallPrice)
+                    price.text = "\(tallPriceResult!) 원"
                 case .grande:
                     size.text = "Grande"
-                    price.text = String(productDrink.price.1)
+                    let grandePrice = productDrink.price.1
+                    let grandePriceResult = numberFormatter.string(for: grandePrice)
+                    price.text = "\(grandePriceResult!) 원"
                 case .venti:
                     size.text = "Venti"
-                    price.text = String(productDrink.price.2)
+                    let ventiPrice = productDrink.price.2
+                    let ventiPriceResult = numberFormatter.string(for: ventiPrice)
+                    price.text = "\(ventiPriceResult!) 원"
                 }
                 size.textColor = .gray
                 cellCount.text = String(productCount)
@@ -53,7 +64,6 @@ class TableViewCell: UITableViewCell {
             }
         }
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -82,22 +92,24 @@ class TableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setView()
-      }
-      
-      override func layoutSubviews() {
+    }
+    
+    override func layoutSubviews() {
         super.layoutSubviews()
-            // Cell 간격 조정
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
-      }
-      
-      required init?(coder: NSCoder) {
+        // Cell 간격 조정
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+    }
+    
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
-      }
-      
-      func setView() {
-            // Cell 둥근 모서리 적용(값이 커질수록 완만)
-        contentView.layer.cornerRadius = 10
-          contentView.layer.borderWidth = 3
-          contentView.layer.borderColor = UIColor.lightGray.cgColor
-      }
+    }
+    
+    func setView() {
+        //        contentView.layer.cornerRadius = 10
+        
+        //          contentView.layer.borderWidth = 2
+        //          contentView.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    
 }
