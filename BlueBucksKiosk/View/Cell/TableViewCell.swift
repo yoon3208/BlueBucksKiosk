@@ -16,7 +16,6 @@ class TableViewCell: UITableViewCell {
     var decreaseClosure: (() -> Void)?
     var deleteClosure: (() -> Void)?
     
-    
     static let identifier = "ShoppingCartCell"
     // 데이터 초기값 설정 후 UI에 매칭
     // To-do: 데이터 변경 후 코드 수정필요
@@ -53,8 +52,6 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
