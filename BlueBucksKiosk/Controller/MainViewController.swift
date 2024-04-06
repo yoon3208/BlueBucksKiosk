@@ -73,7 +73,6 @@ final class MainViewController: UIViewController {
         let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
         if let sheet = cartViewController.sheetPresentationController {
             sheet.detents = [.medium()]
-            sheet.largestUndimmedDetentIdentifier = .medium
             sheet.prefersGrabberVisible = true
         }
         
