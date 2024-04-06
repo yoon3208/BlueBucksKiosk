@@ -26,7 +26,7 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // 테이블 뷰 관련 설정
         cartTableView.delegate = self
         cartTableView.dataSource = self
@@ -34,7 +34,7 @@ class CartViewController: UIViewController {
         // 초기값 세팅
         updateCartInfo()
     }
-
+    
     // MARK: - function
     func calculateTotalPrice(for productList: [Product]) -> Int {
         return productList.reduce(0) { total, product in
@@ -109,11 +109,11 @@ class CartViewController: UIViewController {
     
     func countWarningAlert() {
         let alert = UIAlertController(title: "경고", message: "1개 미만으로 선택하실 수 없습니다", preferredStyle: .alert)
-
+        
         let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-
+        
         alert.addAction(ok)
-
+        
         present(alert, animated: true, completion: nil)
     }
 }
@@ -132,14 +132,14 @@ extension CartViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
-        // 캐스팅 실패 시, fatalError() 호출 대신 안전한 대체 셀 반환
-        print("ShoppingCartCell로 캐스팅할 수 없습니다.")
-        return UITableViewCell()
-    }
+            // 캐스팅 실패 시, fatalError() 호출 대신 안전한 대체 셀 반환
+            print("ShoppingCartCell로 캐스팅할 수 없습니다.")
+            return UITableViewCell()
+        }
         var product = productManager.getProductList()[indexPath.row]
         cell.product = product
         
-//         증간 클로저
+        //         증간 클로저
         cell.increaseClosure = { [weak self] in
             guard let self = self else { return }
             if self.productManager.increaseDrinkCount(product: product) {
@@ -148,7 +148,7 @@ extension CartViewController: UITableViewDataSource{
             }
         }
         
-//         감소 클로저
+        //         감소 클로저
         cell.decreaseClosure = { [weak self, weak tableView] in
             guard let self = self else { return }
             if self.productManager.decreaseDrinkCount(product: product) {
@@ -160,7 +160,7 @@ extension CartViewController: UITableViewDataSource{
             self.updateCartInfo()
         }
         
-//         삭제 클로저
+        //         삭제 클로저
         cell.deleteClosure = { [weak self, weak tableView] in
             guard let self = self else { return }
             
@@ -169,11 +169,9 @@ extension CartViewController: UITableViewDataSource{
                 // 테이블 뷰에서 해당 셀 삭제
                 tableView?.deleteRows(at: [indexPath], with: .fade)
             }
-            
             // 카트 정보 업데이트
             self.updateCartInfo()
         }
-        
         return cell
     }
 }
