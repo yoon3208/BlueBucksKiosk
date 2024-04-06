@@ -63,7 +63,7 @@ class CartViewController: UIViewController {
             return total + price * product.count
         }
     }
-    
+    // product 정보 업데이트
     func updateCartInfo() {
         let productList = productManager.getProductList()
         let totalItems = productList.count
@@ -71,7 +71,7 @@ class CartViewController: UIViewController {
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(totalPrice)원"
     }
-    
+    // 삭제하기 버튼 눌렀을 때 얼럿
     func showCancelAlert() {
         let alert = UIAlertController(title: nil, message: "전체 삭제 하시겠습니까?", preferredStyle: .alert)
         
@@ -89,7 +89,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
+    // 결제하기 버튼 눌렀을 때 나타나는 얼럿
     func purchaseAlert() {
         let alert = UIAlertController(title: nil, message: "전체 결제 하시겠습니까?", preferredStyle: .alert)
         
@@ -109,8 +109,7 @@ class CartViewController: UIViewController {
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
         
-        // let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
-        // 이후 메인화면으로 전환 추가
+        // 메인화면으로 전환
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.dismiss(animated: true, completion: nil)
         }
@@ -152,7 +151,7 @@ extension CartViewController: UITableViewDataSource{
         let product = productManager.getProductList()[indexPath.row]
         cell.product = product
         
-        //         증간 클로저
+        // 증가 클로저
         cell.increaseClosure = { [weak self] in
             guard let self = self else { return }
             if self.productManager.increaseDrinkCount(product: product) {
@@ -161,7 +160,7 @@ extension CartViewController: UITableViewDataSource{
             }
         }
         
-        //         감소 클로저
+        // 감소 클로저
         cell.decreaseClosure = { [weak self] in
             guard let self = self else { return }
             if self.productManager.decreaseDrinkCount(product: product) {
@@ -173,7 +172,7 @@ extension CartViewController: UITableViewDataSource{
             self.updateCartInfo()
         }
         
-        //         삭제 클로저
+        // 삭제 클로저
         cell.deleteClosure = { [weak self] in
             guard let self = self else { return }
             
