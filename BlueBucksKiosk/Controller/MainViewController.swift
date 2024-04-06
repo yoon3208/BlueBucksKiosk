@@ -71,7 +71,10 @@ final class MainViewController: UIViewController {
     @objc private func didTappedCartBtn(button: UIButton) {
         let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
         let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
-        if let sheet = cartViewController.sheetPresentationController { sheet.detents = [.medium()] }
+        if let sheet = cartViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
         
         self.present(cartViewController, animated: true)
     }
