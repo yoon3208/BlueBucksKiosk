@@ -15,7 +15,6 @@ final class MainViewController: UIViewController {
     
     private var drinks = [Drink]()
     
-    // To Do - 병합 후 수정
     let minimumLineSpacing: CGFloat = 5
     
     // MARK: - life cycles
@@ -28,10 +27,17 @@ final class MainViewController: UIViewController {
         
         initDatas()
         setAddTarget()
+        setNavigation()
         setCollectionView()
-        initSegmentedControl()
+        setSegmentedControl()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        mainView.cartBtn.clipsToBounds = true
+        mainView.cartBtn.layer.cornerRadius = mainView.cartBtn.layer.frame.size.width / 2
+    }
+    
+    // MARK: - methods
     private func initDatas() {
         drinks = self.drinkManager.getDrinksOfCategory(category: .espresso)
     }
@@ -39,6 +45,10 @@ final class MainViewController: UIViewController {
     private func setAddTarget() {
         self.mainView.cartBtn.addTarget(self, action: #selector(didTappedCartBtn), for: .touchUpInside)
         self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
+    }
+    
+    private func setNavigation() {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setCollectionView() {
@@ -49,13 +59,21 @@ final class MainViewController: UIViewController {
         self.mainView.drinkCollectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
     
-    private func initSegmentedControl() {
+    private func setSegmentedControl() {
         self.mainView.categoriesSC.selectedSegmentIndex = 0
         
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
                                                           for: .normal)
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
                                                            .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+    }
+    
+    @objc private func didTappedCartBtn(button: UIButton) {
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        if let sheet = cartViewController.sheetPresentationController { sheet.detents = [.medium()] }
+        
+        self.present(cartViewController, animated: true)
     }
     
     @objc private func didChangedSCValue(segment: UISegmentedControl) {
@@ -71,12 +89,6 @@ final class MainViewController: UIViewController {
         }
         self.mainView.drinkCollectionView.reloadData()
     }
-    
-    @objc private func didTappedCartBtn(button: UIButton) {
-        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
-        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
-        self.present(cartViewController, animated: true)
-    }
 }
 
 extension MainViewController: UICollectionViewDelegate {
@@ -85,7 +97,7 @@ extension MainViewController: UICollectionViewDelegate {
         let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
         detailViewController.drink = drinks[indexPath.row]
         
-        self.present(detailViewController, animated: true)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -106,7 +118,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width/2 - minimumLineSpacing
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width+50)
     }
     
     // 지정 된 섹션의 행 사이 최소 간격
@@ -116,7 +128,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     // 지정 된 섹션의 셀 사이 최소 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        // To Do - 병합 후 수정
         return 10
     }
 }
