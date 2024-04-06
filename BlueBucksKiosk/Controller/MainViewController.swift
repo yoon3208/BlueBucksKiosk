@@ -35,6 +35,9 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         mainView.cartBtn.clipsToBounds = true
         mainView.cartBtn.layer.cornerRadius = mainView.cartBtn.layer.frame.size.width / 2
+        
+        mainView.cartCountLabel.clipsToBounds = true
+        mainView.cartCountLabel.layer.cornerRadius = mainView.cartCountLabel.layer.frame.size.width / 2
     }
     
     // MARK: - methods

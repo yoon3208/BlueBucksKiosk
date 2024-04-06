@@ -34,6 +34,17 @@ class MainView: UIView {
         return btn
     }()
     
+    let cartCountLabel: UILabel = {
+        let label = UILabel()
+        label.layer.borderWidth = 1.5
+        label.layer.borderColor = UIColor.bluebucks.cgColor
+        label.text = "0"
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.backgroundColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+    
     // MARK: - methods
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,6 +65,7 @@ class MainView: UIView {
         self.addSubview(categoriesSC)
         self.addSubview(drinkCollectionView)
         self.addSubview(cartBtn)
+        self.addSubview(cartCountLabel)
         
         categoriesSC.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
@@ -71,6 +83,12 @@ class MainView: UIView {
             $0.width.height.equalTo(66)
             $0.trailing.equalToSuperview().offset(-26)
             $0.bottom.equalToSuperview().offset(-50)
+        }
+        
+        cartCountLabel.snp.makeConstraints {
+            $0.width.height.equalTo(30)
+            $0.centerX.equalTo(self.cartBtn.snp.centerX).offset(25)
+            $0.centerY.equalTo(self.cartBtn.snp.centerY).offset(-20)
         }
     }
 }
