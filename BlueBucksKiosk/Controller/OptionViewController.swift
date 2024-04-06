@@ -9,247 +9,139 @@ import UIKit
 
 class OptionViewController: UIViewController {
     
-    @IBOutlet weak var drinkName: UILabel! {
+    // MARK: - Properties
+    
+    var price = 0
+    var count = 0
+    var index = -1
+    var size = Size.tall
+    
+    private let manager = ProductManager()
+    
+    var drink: Drink? {
         didSet {
-            drinkName.text = "\(selectedName)"
-        }
-    }
-    var addedOption: String = "" // 추가된 옵션
-    
-    var selectedName: String = "" // 선택된 음료 명
-    
-    @IBOutlet weak var tallButton: UIView! // 톨 사이즈 버튼(UIView)
-    @IBOutlet weak var grandeButton: UIView! // 그란데 사이즈 버튼(UIView)
-    @IBOutlet weak var ventiButton: UIView! // 벤티 사이즈 버튼(UIView)
-    
-    var tallButtonPressed: Bool = false
-    var grandeButtonPressed: Bool = false
-    var ventiButtonPressed: Bool = false
-    
-    @IBAction func tallButton(_ sender: Any) { // 톨 사이즈 버튼(UIButton)
-        tallButtonPressed.toggle()
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        grandeButtonPressed = false
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        ventiButtonPressed = false
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
-        
-        addedOption = tallButtonPressed ? "tall" : "" // 버튼이 눌렸을 경우 "tall", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-    }
-    
-    
-    @IBAction func grandeButton(_ sender: Any) { // 그란데 사이즈 버튼(UIButton)
-        grandeButtonPressed.toggle()
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        tallButtonPressed = false
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        ventiButtonPressed = false
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
-        
-        if !grandeButtonPressed {
-            sizeOptionPrice -= 500
-            if ventiButtonPressed && tallButtonPressed {
-                sizeOptionPrice -= 500
-            }
-        } else {
-            sizeOptionPrice += 500
-        }
-        addedOption = grandeButtonPressed ? "grande" : "" // 버튼이 눌렸을 경우 "grande", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-        
-        resetOtherButtonStates(grandeButton)
-        updateOptionAddPrice()
-    }
-    
-    @IBAction func ventiButton(_ sender: Any) { // 벤티 사이즈 버튼(UIButton)
-        ventiButtonPressed.toggle()
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        tallButtonPressed = false
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        grandeButtonPressed = false
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        
-        if !ventiButtonPressed {
-            sizeOptionPrice -= 1000
-            if grandeButtonPressed && tallButtonPressed{
-                sizeOptionPrice -= 1000
-            }
-        } else {
-            sizeOptionPrice += 1000
-        }
-        addedOption = ventiButtonPressed ? "venti" : "" // 버튼이 눌렸을 경우 "venti", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-        
-        resetOtherButtonStates(ventiButton)
-        updateOptionAddPrice()
-    }
-    
-    @IBOutlet weak var optionAddPrice: UILabel! { // 옵션이 더해진 총 가격
-        didSet {
-            updateOptionAddPrice()
+            self.drinkNameKor.text = drink?.name.0
+            self.drinkNameEng.text = drink?.name.1
         }
     }
     
-    var selectedPrice: Int = 0 { // 선택된 음료 가격
-        didSet {
-            updateOptionAddPrice()
-        }
-    }
+    // MARK: - IBOutlets
+    @IBOutlet weak var tallBtn: UIButton!
+    @IBOutlet weak var grandeBtn: UIButton!
+    @IBOutlet weak var ventiBtn: UIButton!
     
-    var sizeOptionPrice: Int = 0 // 사이즈 옵션 추가금
+    @IBOutlet weak var drinkNameEng: UILabel!
+    @IBOutlet weak var drinkNameKor: UILabel!
+    @IBOutlet weak var optionAddPrice: UILabel!
+    @IBOutlet weak var drinkCount: UILabel!
     
-    @IBOutlet weak var totalCount: UILabel!
-    var count: Int = 1 {
-        didSet {
-            updateOptionAddPrice()
-        }
-    }
-    
-    func updateOptionAddPrice() { // 선택된 음료와 옵션 추가금을 더한 총 가격을 업데이트
-        let totalPrice = (selectedPrice + sizeOptionPrice) * count
-        optionAddPrice.text = "가격: \(totalPrice)"
-    }
-    
-    @IBAction func addCount(_ sender: Any) { // 수량 증가 버튼
-        count += 1 // totalCount 값 증가
-        updateTotalCountLabel() // totalCount 레이블 업데이트
-    }
-    
-    @IBAction func minusCount(_ sender: Any) { // 수량 감소 버튼
-        if count > 1 {
-            count -= 1 // totalCount 값 감소 (최소값 1로 유지)
-            updateTotalCountLabel() // totalCount 레이블 업데이트
-        }
-    }
+    // MARK: - Lifecycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateTotalCountLabel() // 총 수량 업데이트
-        configureGestureRecognizers() // 각 버튼에 대한 제스처 인식기
-        
-        // 컵 사이즈 버튼(UIView)에 대한 레이어 속성 설정
-        tallButton.layer.cornerRadius = 5 // 버튼의 둥근 모서리 값
-        tallButton.layer.borderWidth = 1 // 버튼의 테두리 두께 값
-        tallButton.layer.borderColor = UIColor.lightGray.cgColor // 버튼의 테두리 색상
-        
-        grandeButton.layer.cornerRadius = 5
-        grandeButton.layer.borderWidth = 1
-        grandeButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        ventiButton.layer.cornerRadius = 5
-        ventiButton.layer.borderWidth = 1
-        ventiButton.layer.borderColor = UIColor.lightGray.cgColor
+        updateTotalCountLabel()
     }
     
-    func configureGestureRecognizers() {
-        let tallTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleTallButton(_:)))
-        tallButton.addGestureRecognizer(tallTapGesture)
-        // 톨 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleTallButton(_:) 메서드 실행
-        
-        let grandeTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleGrandeButton(_:)))
-        grandeButton.addGestureRecognizer(grandeTapGesture)
-        // 그란데 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleGrandeButton(_:) 메서드 실행
-        
-        let ventiTapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleVentiButton(_:)))
-        ventiButton.addGestureRecognizer(ventiTapGesture)
-        // 벤티 사이즈 버튼(UIView) 탭 제스처 실행 시, toggleVentiButton(_:) 메서드 실행
-    }
+    // MARK: - IBActions
     
-    @objc func toggleTallButton(_ sender: UITapGestureRecognizer) {
-        tallButtonPressed.toggle()
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        grandeButtonPressed = false
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        ventiButtonPressed = false
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
-        
-        addedOption = tallButtonPressed ? "tall" : ""  // 버튼이 눌렸을 경우 "tall", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-    }
-    
-    @objc func toggleGrandeButton(_ sender: UITapGestureRecognizer) {
-        grandeButtonPressed.toggle()
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        tallButtonPressed = false
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        ventiButtonPressed = false
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
-        
-        if !grandeButtonPressed {
-            sizeOptionPrice -= 500
-            if ventiButtonPressed && tallButtonPressed {
-                sizeOptionPrice -= 500
+    @IBAction func selectedButtonTapped(_ sender: UIButton) {
+        [tallBtn, grandeBtn, ventiBtn].forEach { button in
+            if sender === button {
+                button.isSelected.toggle()
+                index = sender.tag
+            } else {
+                button.isSelected = false
             }
+            updateButtonAppearance(button)
+        }
+        updateSize()
+        let isOptionChosen = index != -1
+        updateOptionAddPrice(isOptionChosen: isOptionChosen)
+    }
+    
+    @IBAction func updateCount(_ sender: UIButton) {
+        // 옵션을 선택하지 않은 경우 또는 현재 버튼이 선택된 옵션과 동일한 경우에만 카운트 업데이트
+        if index == -1 || sender.tag == index {
+            if sender.tag != index {
+                if count > 0 {
+                    count -= 1
+                }
+            } else {
+                count += 1
+            } // 카운트가 1보다 큰 경우에만 실행
+            updateTotalCountLabel()
+            let isOptionChosen = index != -1
+            updateOptionAddPrice(isOptionChosen: isOptionChosen)
+        }
+    }
+    
+    @IBAction func addToCart(_ sender: UIButton) {
+        // 옵션을 선택하지 않은 경우에 알림 표시
+        if index == -1 {
+            let alert = UIAlertController(title: "안내", message: "상품을 선택해주세요.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
+            return
         } else {
-            sizeOptionPrice += 500
-        }
-        addedOption = grandeButtonPressed ? "grande" : "" // 버튼이 눌렸을 경우 "grande", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-        
-        resetOtherButtonStates(grandeButton)
-        updateOptionAddPrice()
-        
-    }
-    
-    @objc func toggleVentiButton(_ sender: UITapGestureRecognizer) {
-        ventiButtonPressed.toggle()
-        updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed) // 버튼이 눌린 여부에 따라 외관 업데이트
-        
-        tallButtonPressed = false
-        updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        grandeButtonPressed = false
-        updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        
-        if !ventiButtonPressed { // venti 버튼이 눌리지 않은 경우
-            sizeOptionPrice -= 1000
-            if grandeButtonPressed && tallButtonPressed { // grande 버튼, tall 버튼 둘 다 눌려 있는 경우 추가된 값 다시 취소
-                sizeOptionPrice -= 1000
-            }
-        } else {
-            sizeOptionPrice += 1000
-        }
-        addedOption = ventiButtonPressed ? "venti" : "" // 버튼이 눌렸을 경우 "venti", 아닐 경우 빈 문자열을 추가된 옵션에 업데이트
-        
-        resetOtherButtonStates(ventiButton)
-        updateOptionAddPrice()
-    }
-    
-    
-    func resetOtherButtonStates(_ selectedButton: UIView) {
-        
-        if selectedButton != tallButton {
-            tallButtonPressed = false
-            updateButtonAppearance(for: tallButton, isPressed: tallButtonPressed)
-        }
-        
-        if selectedButton != grandeButton {
-            grandeButtonPressed = false
-            updateButtonAppearance(for: grandeButton, isPressed: grandeButtonPressed)
-        }
-        
-        if selectedButton != ventiButton {
-            ventiButtonPressed = false
-            updateButtonAppearance(for: ventiButton, isPressed: ventiButtonPressed)
+            let product = Product(drink: drink!, count: count, size: size)
+            manager.addProduct(product: product)
+            let mainVC = MainViewController()
+            mainVC.modalPresentationStyle = .fullScreen
+            self.present(mainVC, animated: true)
         }
     }
     
-    func updateButtonAppearance(for button: UIView, isPressed: Bool) {
-        let borderColor = isPressed ? UIColor(named: "maincolor")?.cgColor : UIColor.lightGray.cgColor
-        button.layer.borderWidth = isPressed ? 2 : 1
+    // MARK: - Custom Methods
+    
+    func updateButtonAppearance(_ button: UIButton) {
+        let borderColor = button.isSelected ? UIColor.bluebucks.cgColor : UIColor.lightGray.cgColor
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = button.isSelected ? 2 : 1
         button.layer.borderColor = borderColor
     }
     
-    func updateTotalCountLabel() {
-        totalCount.text = "\(count)"
+    func resetOtherButtons(_ selectedButton: UIButton) {
+        [tallBtn, grandeBtn, ventiBtn].forEach { button in
+            button.layer.borderColor = (button == selectedButton && button.isSelected) ? UIColor.bluebucks.cgColor : UIColor.lightGray.cgColor
+        }
     }
     
-    //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if segue.identifier == "" {
-    //            if let optionVC = segue.destination as? OptionViewController {
-    //                optionVC.selectedName = addedOption
-    //            }
-    //        }
-    //    }
+    func updateSize() {
+        switch index {
+        case 0:
+            size = .tall
+        case 1:
+            size = .grande
+        case 2:
+            size = .venti
+        default:
+            break
+        }
+    }
+    
+    func updateTotalCountLabel() {
+        drinkCount.text = "\(count)"
+    }
+    
+    func updateOptionAddPrice(isOptionChosen: Bool) {
+        guard let drink = drink else {
+            optionAddPrice.text = "가격: N/A"
+            return
+        }
+        if isOptionChosen {
+            switch size {
+            case .tall:
+                price = drink.price.0 * count
+            case .grande:
+                price = drink.price.1 * count
+            case .venti:
+                price = drink.price.2 * count
+            }
+        } else {
+            price = 0 // 옵션이 선택되지 않았을 때 가격 초기화
+        }
+        optionAddPrice.text = "가격: \(price)"
+    }
 }
