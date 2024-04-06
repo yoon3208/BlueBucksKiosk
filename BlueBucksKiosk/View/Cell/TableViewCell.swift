@@ -8,7 +8,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var size: UILabel!
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var cellCount: UILabel!
-    @IBOutlet weak var CountView: UIView!
+    @IBOutlet weak var countView: UIView!
     
     //예상 변수 이름 설정
     // var 더하기 빼기 : ((bool) -> ())?
@@ -45,7 +45,7 @@ class TableViewCell: UITableViewCell {
                 cellImage.layer.borderWidth = 3
                 cellImage.clipsToBounds = true
                 cellImage.layer.borderColor = UIColor.bluebucks.cgColor
-                CountView.layer.cornerRadius = 8
+                countView.layer.cornerRadius = 8
             }
         }
     }
@@ -74,4 +74,24 @@ class TableViewCell: UITableViewCell {
             deleteClosure?()
         }
     }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setView()
+      }
+      
+      override func layoutSubviews() {
+        super.layoutSubviews()
+            // Cell 간격 조정
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
+      }
+      
+      required init?(coder: NSCoder) {
+        super.init(coder: coder)
+      }
+      
+      func setView() {
+            // Cell 둥근 모서리 적용(값이 커질수록 완만)
+        contentView.layer.cornerRadius = 10
+      }
 }
