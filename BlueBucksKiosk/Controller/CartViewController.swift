@@ -38,6 +38,9 @@ class CartViewController: UIViewController {
         purchaseBtn.clipsToBounds = true
         purchaseBtn.layer.cornerRadius = 8
         // allClearBtn
+        allClearBtn.setTitle("전체삭제", for: .normal)
+        allClearBtn.configuration = buttonConfig
+        allClearBtn.clipsToBounds = true
         allClearBtn.layer.cornerRadius = 8
         // cartTableView
         cartTableView.layer.cornerRadius = 8
