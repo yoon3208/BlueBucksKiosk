@@ -91,6 +91,17 @@ class CartViewController: UIViewController {
     }
     // 결제하기 버튼 눌렀을 때 나타나는 얼럿
     func purchaseAlert() {
+        // 카트에 제품이 있는지 확인
+        guard !productManager.getProductList().isEmpty else {
+            // 제품이 없는 경우 알림창 표시
+            let alert = UIAlertController(title: "알림", message: "결제할 상품이 없습니다.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // 카트에 제품이 있는 경우 결제 확인 알림창 표시
         let alert = UIAlertController(title: nil, message: "전체 결제 하시겠습니까?", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -105,6 +116,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+
     
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
