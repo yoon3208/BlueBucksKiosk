@@ -106,7 +106,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width/2 - minimumLineSpacing
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width+20)
     }
     
     // 지정 된 섹션의 행 사이 최소 간격
