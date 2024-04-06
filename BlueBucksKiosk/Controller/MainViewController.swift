@@ -28,6 +28,7 @@ final class MainViewController: UIViewController {
         
         initDatas()
         setAddTarget()
+        setNavigation()
         setCollectionView()
         initSegmentedControl()
     }
@@ -39,6 +40,10 @@ final class MainViewController: UIViewController {
     private func setAddTarget() {
         self.mainView.cartBtn.addTarget(self, action: #selector(didTappedCartBtn), for: .touchUpInside)
         self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
+    }
+    
+    private func setNavigation() {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setCollectionView() {
