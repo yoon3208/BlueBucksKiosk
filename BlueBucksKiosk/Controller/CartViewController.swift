@@ -149,7 +149,7 @@ extension CartViewController: UITableViewDataSource{
             print("ShoppingCartCell로 캐스팅할 수 없습니다.")
             return UITableViewCell()
         }
-        var product = productManager.getProductList()[indexPath.row]
+        let product = productManager.getProductList()[indexPath.row]
         cell.product = product
         
         //         증간 클로저
@@ -162,10 +162,10 @@ extension CartViewController: UITableViewDataSource{
         }
         
         //         감소 클로저
-        cell.decreaseClosure = { [weak self, weak tableView] in
+        cell.decreaseClosure = { [weak self] in
             guard let self = self else { return }
             if self.productManager.decreaseDrinkCount(product: product) {
-                tableView?.reloadRows(at: [indexPath], with: .none)
+                tableView.reloadRows(at: [indexPath], with: .none)
             } else {
                 // 수량이 1이하일 때는 숫자 변경 x
                 countWarningAlert()
@@ -174,13 +174,13 @@ extension CartViewController: UITableViewDataSource{
         }
         
         //         삭제 클로저
-        cell.deleteClosure = { [weak self, weak tableView] in
+        cell.deleteClosure = { [weak self] in
             guard let self = self else { return }
             
             // 데이터 모델에서 셀에 해당하는 데이터 삭제
             if self.productManager.deleteProduct(product: product) {
                 // 테이블 뷰에서 해당 셀 삭제
-                tableView?.deleteRows(at: [indexPath], with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
             // 카트 정보 업데이트
             self.updateCartInfo()
