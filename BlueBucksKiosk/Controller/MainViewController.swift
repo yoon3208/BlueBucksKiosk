@@ -15,7 +15,6 @@ final class MainViewController: UIViewController {
     
     private var drinks = [Drink]()
     
-    // To Do - 병합 후 수정
     let minimumLineSpacing: CGFloat = 5
     
     // MARK: - life cycles
@@ -121,7 +120,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     // 지정 된 섹션의 셀 사이 최소 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        // To Do - 병합 후 수정
         return 10
     }
 }
