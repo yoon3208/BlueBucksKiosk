@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -49,6 +49,9 @@
                                     </attributedString>
                                     <color key="baseBackgroundColor" name="maincolor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addToCart:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="FSK-JU-gfy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Ktd-Wy-PHr">
                                 <rect key="frame" x="29" y="725" width="33" height="33"/>
@@ -67,6 +70,9 @@
                                     </attributedString>
                                     <color key="baseBackgroundColor" name="maincolor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="updateCount:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2OW-Zj-7u2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="BKy-mo-DsR">
                                 <rect key="frame" x="112" y="725" width="33" height="33"/>
@@ -85,6 +91,9 @@
                                     </attributedString>
                                     <color key="baseBackgroundColor" name="maincolor"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="updateCount:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="miE-h8-k7A"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="컵 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FTA-T4-4lI">
                                 <rect key="frame" x="29" y="156" width="49" height="21"/>
@@ -104,6 +113,9 @@
                                         <color key="strokeColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="selectedButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sax-tm-3bk"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tall" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwV-iQ-fJE">
                                 <rect key="frame" x="67" y="292" width="21" height="18"/>
@@ -122,6 +134,9 @@
                                         <color key="strokeColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="selectedButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="KuQ-zp-Ss8"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="grande" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUn-ke-TFi">
                                 <rect key="frame" x="171" y="291" width="49" height="18"/>
@@ -140,6 +155,9 @@
                                         <color key="strokeColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="selectedButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="B2H-3r-Yte"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="venti" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrr-1m-CLL">
                                 <rect key="frame" x="299" y="291" width="34" height="18"/>
@@ -166,6 +184,15 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="drinkCount" destination="ZMN-Fn-oNZ" id="S6s-nL-bGK"/>
+                        <outlet property="drinkNameEng" destination="CKr-jg-T1P" id="AGj-iv-GhX"/>
+                        <outlet property="drinkNameKor" destination="env-UU-MHh" id="eUS-8d-8gz"/>
+                        <outlet property="grandeBtn" destination="VFu-Zn-bHx" id="URo-lM-OhN"/>
+                        <outlet property="optionAddPrice" destination="3EF-z0-bH9" id="Iew-P7-nKl"/>
+                        <outlet property="tallBtn" destination="rBO-az-4Ra" id="pC1-8Y-r3Q"/>
+                        <outlet property="ventiBtn" destination="4dy-6X-WfZ" id="whO-1X-Sar"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

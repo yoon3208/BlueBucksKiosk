@@ -44,7 +44,7 @@ class TableViewCell: UITableViewCell {
                 cellImage.layer.cornerRadius = 72
                 cellImage.layer.borderWidth = 3
                 cellImage.clipsToBounds = true
-                cellImage.layer.borderColor = UIColor.maincolor.cgColor
+                cellImage.layer.borderColor = UIColor.bluebucks.cgColor
             }
         }
     }
