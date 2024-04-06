@@ -32,6 +32,6 @@ class CollectionViewCell: UICollectionViewCell {
         cellImage.layer.cornerRadius = 72
         cellImage.layer.borderWidth = 2
         cellImage.clipsToBounds = true
-        cellImage.layer.borderColor = UIColor.maincolor.cgColor
+        cellImage.layer.borderColor = UIColor.bluebucks.cgColor
     }
 }

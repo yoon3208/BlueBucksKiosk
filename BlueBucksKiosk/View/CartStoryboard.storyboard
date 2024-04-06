@@ -9,33 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Modal Test View Controller-->
-        <scene sceneID="VRn-m3-pwY">
-            <objects>
-                <viewController id="qpD-Xj-m1p" customClass="ModalTestViewController" customModule="BlueBucksKiosk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IId-cv-z88">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yg-35-Wla">
-                                <rect key="frame" x="146" y="409" width="102" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="모달 테스트"/>
-                                <connections>
-                                    <action selector="ModalTestButton:" destination="qpD-Xj-m1p" eventType="touchUpInside" id="RZz-cR-3jU"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="WJj-1Z-DnR"/>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dki-kN-3Wg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1" y="-27"/>
-        </scene>
         <!--Cart View Controller-->
         <scene sceneID="qRc-bm-jXu">
             <objects>
@@ -44,63 +17,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주문 개수 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-jM-wRr">
-                                <rect key="frame" x="16" y="59" width="77" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrQ-K9-TjF">
-                                <rect key="frame" x="101" y="59" width="10" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jt8-wB-CGK">
-                                <rect key="frame" x="16" y="88" width="361" height="264"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jt8-wB-CGK">
+                                <rect key="frame" x="16" y="50" width="361" height="288"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="27q-kc-ien">
-                                        <rect key="frame" x="8" y="54" width="345" height="200"/>
+                                        <rect key="frame" x="8" y="8" width="345" height="227"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdz-CQ-yeg">
-                                        <rect key="frame" x="298" y="0.0" width="55" height="55"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="주문 개수 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-jM-wRr">
+                                        <rect key="frame" x="8" y="252" width="60" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="xmark.bin" catalog="system"/>
-                                        <connections>
-                                            <action selector="allClearBtnPressed:" destination="GX7-AV-gkc" eventType="touchUpInside" id="2fr-8H-f2h"/>
-                                        </connections>
-                                    </button>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OrQ-K9-TjF">
+                                        <rect key="frame" x="127" y="252" width="46" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="총 주문가격 : " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-Z8-t9f">
+                                        <rect key="frame" x="193" y="252" width="71" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" systemColor="systemGray2Color"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFC-3d-puO">
+                                        <rect key="frame" x="272" y="253" width="81" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="264" id="402-xa-7yE"/>
-                                </constraints>
+                                <color key="backgroundColor" red="0.58823529411764708" green="0.85882352941176465" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isRadius" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 주문가격 : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxk-Z8-t9f">
-                                <rect key="frame" x="236" y="59" width="92" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFC-3d-puO">
-                                <rect key="frame" x="336" y="59" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-0u-SxL">
-                                <rect key="frame" x="16" y="360" width="361" height="34"/>
-                                <color key="backgroundColor" systemColor="systemMintColor"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdz-CQ-yeg">
+                                <rect key="frame" x="16" y="354" width="175" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="결제하기"/>
+                                <buttonConfiguration key="configuration" style="plain" title="전체삭제">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="allClearBtnPressed:" destination="GX7-AV-gkc" eventType="touchUpInside" id="2fr-8H-f2h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwo-0u-SxL">
+                                <rect key="frame" x="202" y="354" width="175" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="결제하기"/>
                                 <connections>
                                     <action selector="purchaseBtnPressed:" destination="GX7-AV-gkc" eventType="touchUpInside" id="Exc-eg-Hnx"/>
                                 </connections>
@@ -108,28 +89,13 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5eZ-I3-d4t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="2UX-jM-wRr" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="0Jb-KC-Rig"/>
-                            <constraint firstItem="5eZ-I3-d4t" firstAttribute="trailing" secondItem="cwo-0u-SxL" secondAttribute="trailing" constant="16" id="1rr-2J-ax9"/>
-                            <constraint firstItem="cwo-0u-SxL" firstAttribute="leading" secondItem="5eZ-I3-d4t" secondAttribute="leading" constant="16" id="6PK-bA-1bV"/>
-                            <constraint firstItem="OrQ-K9-TjF" firstAttribute="leading" secondItem="2UX-jM-wRr" secondAttribute="trailing" constant="8" id="7Pc-jV-OBv"/>
-                            <constraint firstItem="OrQ-K9-TjF" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="A4d-xL-agp"/>
-                            <constraint firstItem="cwo-0u-SxL" firstAttribute="top" secondItem="jt8-wB-CGK" secondAttribute="bottom" constant="8" id="Chr-pu-SLW"/>
-                            <constraint firstItem="dxk-Z8-t9f" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="F1H-D7-eEa"/>
-                            <constraint firstItem="2UX-jM-wRr" firstAttribute="leading" secondItem="5eZ-I3-d4t" secondAttribute="leading" constant="16" id="PxZ-1R-WnY"/>
-                            <constraint firstItem="5eZ-I3-d4t" firstAttribute="trailing" secondItem="XFC-3d-puO" secondAttribute="trailing" constant="16" id="SYi-tp-qmr"/>
-                            <constraint firstItem="XFC-3d-puO" firstAttribute="top" secondItem="5eZ-I3-d4t" secondAttribute="top" id="XWi-e8-gmh"/>
-                            <constraint firstItem="jt8-wB-CGK" firstAttribute="top" secondItem="i1x-Zz-ccb" secondAttribute="topMargin" constant="29" id="YZc-jw-YfJ"/>
-                            <constraint firstItem="cwo-0u-SxL" firstAttribute="top" secondItem="jt8-wB-CGK" secondAttribute="bottom" constant="8" id="ab4-QG-4Za"/>
-                            <constraint firstItem="jt8-wB-CGK" firstAttribute="leading" secondItem="5eZ-I3-d4t" secondAttribute="leading" constant="16" id="gZ1-VP-Wmp"/>
-                            <constraint firstItem="5eZ-I3-d4t" firstAttribute="trailing" secondItem="jt8-wB-CGK" secondAttribute="trailing" constant="16" id="uKb-bZ-uFW"/>
-                            <constraint firstItem="XFC-3d-puO" firstAttribute="leading" secondItem="dxk-Z8-t9f" secondAttribute="trailing" constant="8" id="xeH-g8-vpy"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="allClearBtn" destination="Qdz-CQ-yeg" id="00Z-do-SLW"/>
                         <outlet property="cartTableView" destination="27q-kc-ien" id="7FG-Vj-g6z"/>
                         <outlet property="menuCnt" destination="OrQ-K9-TjF" id="PV8-95-ud0"/>
                         <outlet property="menuPriceSum" destination="XFC-3d-puO" id="zFX-CW-MA9"/>
+                        <outlet property="menuView" destination="jt8-wB-CGK" id="4MP-es-v4g"/>
                         <outlet property="purchaseBtn" destination="cwo-0u-SxL" id="SO9-xO-pZz"/>
                     </connections>
                 </viewController>
@@ -139,12 +105,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="xmark.bin" catalog="system" width="128" height="92"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

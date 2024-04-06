@@ -11,9 +11,11 @@ final class MainViewController: UIViewController {
     
     // MARK: - properties
     private let mainView = MainView()
+    private let drinkManager = DrinkManager()
     
-    // To Do - 병합 후 수정
-    let minimumLineSpacing: CGFloat = 10
+    private var drinks = [Drink]()
+    
+    let minimumLineSpacing: CGFloat = 5
     
     // MARK: - life cycles
     override func loadView() {
@@ -23,25 +25,41 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initDatas()
         setAddTarget()
-        //setCollectionView() // To Do - 연결 할 때 주석 삭제
-        initSegmentedControl()
+        setNavigation()
+        setCollectionView()
+        setSegmentedControl()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        mainView.cartBtn.clipsToBounds = true
+        mainView.cartBtn.layer.cornerRadius = mainView.cartBtn.layer.frame.size.width / 2
+    }
+    
+    // MARK: - methods
+    private func initDatas() {
+        drinks = self.drinkManager.getDrinksOfCategory(category: .espresso)
     }
     
     private func setAddTarget() {
+        self.mainView.cartBtn.addTarget(self, action: #selector(didTappedCartBtn), for: .touchUpInside)
         self.mainView.categoriesSC.addTarget(self, action: #selector(didChangedSCValue), for: .valueChanged)
-        self.mainView.shoppingBasketBtn.addTarget(self, action: #selector(didTappedShoppingBasketBtn), for: .touchUpInside)
+    }
+    
+    private func setNavigation() {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func setCollectionView() {
         self.mainView.drinkCollectionView.delegate = self
         self.mainView.drinkCollectionView.dataSource = self
         
-        // To Do - cell regist
-        // self.mainView.drinkCollectionView.register.(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        let nib = UINib(nibName: "CollectionViewCell", bundle: .main)
+        self.mainView.drinkCollectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
     }
     
-    private func initSegmentedControl() {
+    private func setSegmentedControl() {
         self.mainView.categoriesSC.selectedSegmentIndex = 0
         
         self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
@@ -50,50 +68,60 @@ final class MainViewController: UIViewController {
                                                            .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
     }
     
+    @objc private func didTappedCartBtn(button: UIButton) {
+        let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
+        let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        if let sheet = cartViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        
+        self.present(cartViewController, animated: true)
+    }
+    
     @objc private func didChangedSCValue(segment: UISegmentedControl) {
         switch segment.selectedSegmentIndex {
         case 0:
-            break
+            drinks = self.drinkManager.getDrinksOfCategory(category: .espresso)
         case 1:
-            break
+            drinks = self.drinkManager.getDrinksOfCategory(category: .frappuccino)
         case 2:
-            break
+            drinks = self.drinkManager.getDrinksOfCategory(category: .teavana)
         default:
-            break
+            drinks = self.drinkManager.getDrinksOfCategory(category: .etc)
         }
-    }
-    
-    @objc private func didTappedShoppingBasketBtn(button: UIButton) {
-        // To Do - 추가 된 데이터와 함께 장바구니로 이동
+        self.mainView.drinkCollectionView.reloadData()
     }
 }
 
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailStoryboard = UIStoryboard(name: "DetailPage", bundle: .main)
+        let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
+        detailViewController.drink = drinks[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // To Do - reload 될 때 동적으로 수정
-        return 80
+        return drinks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // To Do - 병합 후 수정
-        // guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: <#T##String#>, for: <#T##IndexPath#>) as? "example" else { return UICollectionViewCell() }
-        // return cell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+        cell.drink = drinks[indexPath.row]
         
-        // To Do - 병합 할 떄 삭제
-        return UICollectionViewCell()
+        return cell
     }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     // 셀의 크기
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // To Do - 병합 후 수정
-        let width = collectionView.frame.width/3 - minimumLineSpacing
-        return CGSize(width: width, height: width)
+        let width = collectionView.frame.width/2 - minimumLineSpacing
+        return CGSize(width: width, height: width+50)
     }
     
     // 지정 된 섹션의 행 사이 최소 간격
@@ -103,7 +131,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     // 지정 된 섹션의 셀 사이 최소 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        // To Do - 병합 후 수정
         return 10
     }
 }
