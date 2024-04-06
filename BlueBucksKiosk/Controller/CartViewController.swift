@@ -111,7 +111,9 @@ class CartViewController: UIViewController {
         
         // 메인화면으로 전환
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
-            self?.dismiss(animated: true, completion: nil)
+            self?.productManager.deleteAllProduct() // 모든 제품 삭제
+            self?.cartTableView.reloadData() // 테이블 뷰 새로고침
+            self?.dismiss(animated: true, completion: nil) // 뷰 컨트롤러 닫기
         }
         
         secondAlert.addAction(ok)
