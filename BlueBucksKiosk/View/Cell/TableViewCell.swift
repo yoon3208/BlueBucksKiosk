@@ -9,6 +9,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var cellCount: UILabel!
     @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var minusBtn: UIButton!
+    @IBOutlet weak var plusBtn: UIButton!
     
     //예상 변수 이름 설정
     // var 더하기 빼기 : ((bool) -> ())?
@@ -46,6 +48,8 @@ class TableViewCell: UITableViewCell {
                 cellImage.clipsToBounds = true
                 cellImage.layer.borderColor = UIColor.bluebucks.cgColor
                 countView.layer.cornerRadius = 8
+                minusBtn.backgroundColor = .clear
+                plusBtn.backgroundColor = .clear
             }
         }
     }

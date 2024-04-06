@@ -182,7 +182,9 @@
                 <outlet property="cellImage" destination="gZu-gT-o9E" id="esA-Zh-kbE"/>
                 <outlet property="contentView" destination="H2p-sc-9uM" id="37n-WI-kfy"/>
                 <outlet property="countView" destination="qYB-On-XTx" id="aii-aH-Hlx"/>
+                <outlet property="minusBtn" destination="zN5-NU-7oT" id="JJb-pM-4oT"/>
                 <outlet property="name" destination="8Rb-V2-aAx" id="tsi-Zy-ls6"/>
+                <outlet property="plusBtn" destination="YUM-lF-2Sh" id="2iE-Km-ru8"/>
                 <outlet property="price" destination="JyQ-Sc-M0B" id="ozc-zw-TKY"/>
                 <outlet property="size" destination="2Pq-lG-nRq" id="s8w-7T-F81"/>
             </connections>
