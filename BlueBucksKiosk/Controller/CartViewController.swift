@@ -16,6 +16,7 @@ class CartViewController: UIViewController {
     @IBOutlet weak var menuCnt: UILabel!
     @IBOutlet weak var menuPriceSum: UILabel!
     @IBOutlet weak var purchaseBtn: UIButton!
+    @IBOutlet weak var allClearBtn: UIButton!
     // MARK: - @IBAction
     @IBAction func allClearBtnPressed(_ sender: Any) {
         showCancelAlert()
@@ -36,6 +37,11 @@ class CartViewController: UIViewController {
         purchaseBtn.configuration = buttonConfig
         purchaseBtn.clipsToBounds = true
         purchaseBtn.layer.cornerRadius = 8
+        // allClearBtn
+        allClearBtn.setTitle("전체삭제", for: .normal)
+        allClearBtn.configuration = buttonConfig
+        allClearBtn.clipsToBounds = true
+        allClearBtn.layer.cornerRadius = 8
         // cartTableView
         cartTableView.layer.cornerRadius = 8
         // menuView
@@ -43,7 +49,9 @@ class CartViewController: UIViewController {
         // 테이블 뷰 관련 설정
         cartTableView.delegate = self
         cartTableView.dataSource = self
-        
+        // menuCnt, menuPriceSum 설정
+        menuCnt.textColor = .bluebucks
+        menuPriceSum.textColor = .bluebucks
         // 초기값 세팅
         updateCartInfo()
     }
@@ -68,6 +76,7 @@ class CartViewController: UIViewController {
         let productList = productManager.getProductList()
         let totalItems = productList.count
         let totalPrice = calculateTotalPrice(for: productList)
+        
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(totalPrice)원"
     }
@@ -91,6 +100,17 @@ class CartViewController: UIViewController {
     }
     // 결제하기 버튼 눌렀을 때 나타나는 얼럿
     func purchaseAlert() {
+        // 카트에 제품이 있는지 확인
+        guard !productManager.getProductList().isEmpty else {
+            // 제품이 없는 경우 알림창 표시
+            let alert = UIAlertController(title: "알림", message: "결제할 상품이 없습니다.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // 카트에 제품이 있는 경우 결제 확인 알림창 표시
         let alert = UIAlertController(title: nil, message: "전체 결제 하시겠습니까?", preferredStyle: .alert)
         
         let ok = UIAlertAction(title: "확인", style: .default) { (action) in
@@ -105,6 +125,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
     
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
@@ -146,7 +167,7 @@ extension CartViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
-            // 캐스팅 실패 시, fatalError() 호출 대신 안전한 대체 셀 반환
+            // 캐스팅 실패 시 안전한 대체 셀 반환
             print("ShoppingCartCell로 캐스팅할 수 없습니다.")
             return UITableViewCell()
         }
