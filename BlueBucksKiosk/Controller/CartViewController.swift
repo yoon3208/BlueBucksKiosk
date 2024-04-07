@@ -104,7 +104,14 @@ class CartViewController: UIViewController {
             self?.product = self!.productManager.getProductList()
             self?.cartTableView.reloadData()
             self?.updateCartInfo() // 카트 정보 업데이트
-            self?.dismiss(animated: true, completion: self!.completion)
+            // final alert
+            let finalAlert = UIAlertController(title: nil, message: "전체 삭제되었습니다.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
+                // 삭제후 dismiss
+                self?.dismiss(animated: true, completion: self!.completion)
+            })
+            finalAlert.addAction(okAction)
+            self?.present(finalAlert, animated: true, completion: nil)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
@@ -114,6 +121,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+
     // 결제하기 버튼 눌렀을 때 나타나는 얼럿
     func purchaseAlert() {
         // 카트에 제품이 있는지 확인
