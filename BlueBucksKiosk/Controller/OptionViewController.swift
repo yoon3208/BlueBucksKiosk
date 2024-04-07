@@ -89,6 +89,7 @@ class OptionViewController: UIViewController {
           let isOptionChosen = index != -1
           updateOptionAddPrice(isOptionChosen: isOptionChosen)
       }
+    
     @IBAction func addToCart(_ sender: UIButton) {
         // 옵션을 선택하지 않은 경우에 알림 표시
         if index == -1 {
@@ -104,6 +105,10 @@ class OptionViewController: UIViewController {
             mainVC.modalPresentationStyle = .fullScreen
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    @IBAction func clickBackButton(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods
