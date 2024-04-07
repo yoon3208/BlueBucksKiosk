@@ -12,6 +12,7 @@ final class MainViewController: UIViewController {
     // MARK: - properties
     private let mainView = MainView()
     private let drinkManager = DrinkManager()
+    private let productManager = ProductManager()
     
     private var drinks = [Drink]()
     
@@ -35,6 +36,9 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         mainView.cartBtn.clipsToBounds = true
         mainView.cartBtn.layer.cornerRadius = mainView.cartBtn.layer.frame.size.width / 2
+        
+        mainView.cartCountLabel.clipsToBounds = true
+        mainView.cartCountLabel.layer.cornerRadius = mainView.cartCountLabel.layer.frame.size.width / 2
     }
     
     // MARK: - methods
@@ -62,15 +66,24 @@ final class MainViewController: UIViewController {
     private func setSegmentedControl() {
         self.mainView.categoriesSC.selectedSegmentIndex = 0
         
-        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.gray],
-                                                          for: .normal)
-        self.mainView.categoriesSC.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.bluebucks,
-                                                           .font: UIFont.systemFont(ofSize: 13,weight: .semibold)], for: .selected)
+        self.mainView.categoriesSC.setTitleTextAttributes([.foregroundColor: UIColor.gray,
+                                                           .font: UIFont.systemFont(ofSize: 14)], for: .normal)
+        self.mainView.categoriesSC.setTitleTextAttributes([.foregroundColor: UIColor.bluebucks,
+                                                           .font: UIFont.systemFont(ofSize: 16, weight: .semibold)], for: .selected)
     }
     
     @objc private func didTappedCartBtn(button: UIButton) {
         let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
         let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        
+        cartViewController.completion = { [self] in
+            let productList = productManager.getProductList()
+            let productCount = productList.map { $0.count }.reduce(0, +)
+            
+            mainView.cartCountLabel.layer.isHidden = (productCount < 1) ? true : false
+            mainView.cartCountLabel.text = String(productCount)
+        }
+        
         if let sheet = cartViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
@@ -98,7 +111,15 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailStoryboard = UIStoryboard(name: "DetailPage", bundle: .main)
         let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
+        
         detailViewController.drink = drinks[indexPath.row]
+        detailViewController.completion = { [self] in
+            let productList = productManager.getProductList()
+            let productCount = productList.map { $0.count }.reduce(0, +)
+            
+            mainView.cartCountLabel.layer.isHidden = (productCount < 1) ? true : false
+            mainView.cartCountLabel.text = String(productCount)
+        }
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }

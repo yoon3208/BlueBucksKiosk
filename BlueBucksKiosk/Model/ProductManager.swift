@@ -10,28 +10,28 @@ import Foundation
 final class ProductManager {
 
     // MARK: - properties
-    private var productList = [Product]()
+    private static var productList = [Product]()
     
     // MARK: - methods
     func getProductList() -> [Product] {
-        return productList
+        return Self.productList
     }
     
     func addProduct(product: Product) {
-        let isIncluded = self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
+        let isIncluded = Self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
         
         if let isIncluded = isIncluded {
-            productList[isIncluded].count += product.count
+            Self.productList[isIncluded].count += product.count
         } else {
-            productList.append(product)
+            Self.productList.append(product)
         }
     }
     
     func deleteProduct(product: Product) -> Bool {
-        let isIncluded = self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
+        let isIncluded = Self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
         
         if let isIncluded = isIncluded {
-            productList.remove(at: isIncluded)
+            Self.productList.remove(at: isIncluded)
             return true
         } else {
             return false
@@ -39,14 +39,14 @@ final class ProductManager {
     }
     
     func deleteAllProduct() {
-        productList.removeAll()
+        Self.productList.removeAll()
     }
     
     func increaseDrinkCount(product: Product) -> Bool {
-        let isIncluded = self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
+        let isIncluded = Self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
         
         if let isIncluded = isIncluded {
-            productList[isIncluded].count += 1
+            Self.productList[isIncluded].count += 1
             return true
         } else {
             return false
@@ -54,10 +54,10 @@ final class ProductManager {
     }
     
     func decreaseDrinkCount(product: Product) -> Bool {
-        let isIncluded = self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
+        let isIncluded = Self.productList.firstIndex { $0.drink.id == product.drink.id && $0.size == product.size }
         
-        if let isIncluded = isIncluded, productList[isIncluded].count > 1 {
-            productList[isIncluded].count -= 1
+        if let isIncluded = isIncluded, Self.productList[isIncluded].count > 1 {
+            Self.productList[isIncluded].count -= 1
             return true
         } else {
             return false
