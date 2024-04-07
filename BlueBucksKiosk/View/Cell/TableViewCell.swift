@@ -39,22 +39,22 @@ class TableViewCell: UITableViewCell {
                     size.text = "Tall"
                     let tallPrice = productDrink.price.0
                     let tallPriceResult = numberFormatter.string(for: tallPrice)
-                    price.text = "\(tallPriceResult!) 원"
+                    price.text = "\(tallPriceResult!)원"
                 case .grande:
                     size.text = "Grande"
                     let grandePrice = productDrink.price.1
                     let grandePriceResult = numberFormatter.string(for: grandePrice)
-                    price.text = "\(grandePriceResult!) 원"
+                    price.text = "\(grandePriceResult!)원"
                 case .venti:
                     size.text = "Venti"
                     let ventiPrice = productDrink.price.2
                     let ventiPriceResult = numberFormatter.string(for: ventiPrice)
-                    price.text = "\(ventiPriceResult!) 원"
+                    price.text = "\(ventiPriceResult!)원"
                 }
                 size.textColor = .gray
                 cellCount.text = String(productCount)
                 cellImage.layer.cornerRadius = 8
-                cellImage.layer.borderWidth = 3
+                cellImage.layer.borderWidth = 2
                 cellImage.clipsToBounds = true
                 cellImage.layer.borderColor = UIColor.bluebucks.cgColor
                 countView.layer.cornerRadius = 8
@@ -88,27 +88,24 @@ class TableViewCell: UITableViewCell {
         }
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setView()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // Cell 간격 조정
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    func setView() {
-        //        contentView.layer.cornerRadius = 10
-        
-        //          contentView.layer.borderWidth = 2
-        //          contentView.layer.borderColor = UIColor.lightGray.cgColor
-    }
-    
-    
+//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+//        super.init(style: style, reuseIdentifier: reuseIdentifier)
+//        setView()
+//    }
+//    
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        // Cell 간격 조정
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//    }
+//    
+//    func setView() {
+//        contentView.layer.cornerRadius = 10
+//        contentView.layer.borderWidth = 2
+//        contentView.layer.borderColor = UIColor.lightGray.cgColor
+//    }
 }
