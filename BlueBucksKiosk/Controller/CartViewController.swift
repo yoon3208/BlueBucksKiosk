@@ -47,7 +47,7 @@ class CartViewController: UIViewController {
         allClearBtn.layer.cornerRadius = 8
         // cartTableView
         cartTableView.layer.borderColor = UIColor.lightGray.cgColor
-        cartTableView.layer.borderWidth = 1
+        cartTableView.layer.borderWidth = 2
         cartTableView.layer.cornerRadius = 8
         // menuView
         menuView.layer.cornerRadius = 8
@@ -55,8 +55,8 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
         // menuCnt, menuPriceSum 설정
-        menuCnt.textColor = .bluebucks
-        menuPriceSum.textColor = .bluebucks
+        menuCnt.textColor = .darkGray
+        menuPriceSum.textColor = .darkGray
         // 초기값 세팅
         updateCartInfo()
         let nib = UINib(nibName: "TableViewCell", bundle: .main)
@@ -93,6 +93,10 @@ class CartViewController: UIViewController {
         
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(formattedTotalPrice)원"
+        if product.count >= 1 {
+            menuCnt.textColor = .bluebucks
+            menuPriceSum.textColor = .bluebucks
+        }
     }
     
     // 삭제하기 버튼 눌렀을 때 얼럿
@@ -189,6 +193,7 @@ extension CartViewController: UITableViewDataSource{
         return product.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
             // 캐스팅 실패 시 안전한 대체 셀 반환
@@ -198,19 +203,20 @@ extension CartViewController: UITableViewDataSource{
         cell.product = product[indexPath.row]
         
         // Check if the current cell is the last cell in the table view
-        let isLastCell = indexPath.row == product.count - 1
+//        let isLastCell = indexPath.row == product.count - 1
             
         // 마지막 cell의 바닥선 hidden 처리
-        cell.bottomBar.isHidden = isLastCell
+//        cell.bottomBar.isHidden = isLastCell
         
         // 증가 클로저
         cell.increaseClosure = { [self] in
 //            guard let self = self else { return }
-            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) { cartTableView.reloadRows(at: [indexPath], with: .none)
+            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) {
                 product = productManager.getProductList()
                 self.updateCartInfo()
                 completion!()
             }
+            cartTableView.reloadRows(at: [indexPath], with: .none)
         }
         
         // 감소 클로저
@@ -218,12 +224,11 @@ extension CartViewController: UITableViewDataSource{
 //            guard let self = self else { return }
             if self.productManager.decreaseDrinkCount(product: product[indexPath.row]) {
                 product = productManager.getProductList()
-                tableView.reloadRows(at: [indexPath], with: .none)
-                tableView.reloadData()
             } else {
                 // 수량이 1이하일 때는 숫자 변경 x
                 countWarningAlert()
             }
+            tableView.reloadRows(at: [indexPath], with: .none)
             self.updateCartInfo()
             completion!()
         }
@@ -231,9 +236,11 @@ extension CartViewController: UITableViewDataSource{
         // 삭제 클로저
         cell.deleteClosure = { [self] in
             productManager.deleteProduct(product: product[indexPath.row])
-            
             product = productManager.getProductList()
             // 카트 정보 업데이트
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            menuCnt.textColor = .darkGray
+            menuPriceSum.textColor = .darkGray
             self.updateCartInfo()
             completion!()
         }
