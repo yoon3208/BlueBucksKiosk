@@ -80,7 +80,7 @@ class CartViewController: UIViewController {
     // product 정보 업데이트
     func updateCartInfo() {
         let productList = productManager.getProductList()
-        let totalItems = productList.count
+        let totalItems = productList.map { $0.count }.reduce(0, +)
         let totalPrice = calculateTotalPrice(for: productList)
         
         // NumberFormatter 인스턴스 생성
