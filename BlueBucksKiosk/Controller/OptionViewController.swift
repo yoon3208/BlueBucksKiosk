@@ -19,6 +19,8 @@ class OptionViewController: UIViewController {
     
     var drink: Drink?
     
+    var completion: (() -> ())?
+    
     // MARK: - IBOutlets
     @IBOutlet weak var tallBtn: UIButton!
     @IBOutlet weak var grandeBtn: UIButton!
@@ -76,7 +78,7 @@ class OptionViewController: UIViewController {
 
           // 감소 버튼이 눌렸을 때
         if sender.tag == 3 {
-              if count > 0 {
+              if count > 1 {
                   count -= 1
               }
           }
@@ -101,8 +103,7 @@ class OptionViewController: UIViewController {
         } else {
             let product = Product(drink: drink!, count: count, size: size)
             manager.addProduct(product: product)
-            let mainVC = MainViewController()
-            mainVC.modalPresentationStyle = .fullScreen
+            completion!()
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
