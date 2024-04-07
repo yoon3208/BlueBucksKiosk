@@ -42,6 +42,7 @@ class MainView: UIView {
         label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         label.backgroundColor = .white
         label.textAlignment = .center
+        label.layer.isHidden = true
         return label
     }()
     

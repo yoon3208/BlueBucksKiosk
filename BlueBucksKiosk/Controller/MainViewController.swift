@@ -12,6 +12,7 @@ final class MainViewController: UIViewController {
     // MARK: - properties
     private let mainView = MainView()
     private let drinkManager = DrinkManager()
+    private let productManager = ProductManager()
     
     private var drinks = [Drink]()
     
@@ -74,6 +75,15 @@ final class MainViewController: UIViewController {
     @objc private func didTappedCartBtn(button: UIButton) {
         let cartStoryboard = UIStoryboard(name: "CartStoryboard", bundle: .main)
         let cartViewController = cartStoryboard.instantiateViewController(withIdentifier: "CartViewController") as! CartViewController
+        
+        cartViewController.completion = { [self] in
+            let productList = productManager.getProductList()
+            let productCount = productList.map { $0.count }.reduce(0, +)
+            
+            mainView.cartCountLabel.layer.isHidden = (productCount < 1) ? true : false
+            mainView.cartCountLabel.text = String(productCount)
+        }
+        
         if let sheet = cartViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
@@ -101,7 +111,15 @@ extension MainViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailStoryboard = UIStoryboard(name: "DetailPage", bundle: .main)
         let detailViewController = detailStoryboard.instantiateViewController(withIdentifier: "DetailPageViewController") as! DetailPageViewController
+        
         detailViewController.drink = drinks[indexPath.row]
+        detailViewController.completion = { [self] in
+            let productList = productManager.getProductList()
+            let productCount = productList.map { $0.count }.reduce(0, +)
+            
+            mainView.cartCountLabel.layer.isHidden = (productCount < 1) ? true : false
+            mainView.cartCountLabel.text = String(productCount)
+        }
         
         self.navigationController?.pushViewController(detailViewController, animated: true)
     }
