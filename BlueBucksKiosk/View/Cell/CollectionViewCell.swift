@@ -14,22 +14,23 @@ class CollectionViewCell: UICollectionViewCell {
             if let drink = drink {
                 cellImage.image = drink.image
                 name.text = drink.name.0
-                price.text = String(drink.price.0)
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                let tallPrice = drink.price.0
+                let tallPriceResult = numberFormatter.string(for: tallPrice)
+                price.text = "\(tallPriceResult!)원"
             }
-            
-            
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        cellImage.layer.cornerRadius = 72
+        cellImage.layer.cornerRadius = 70
         cellImage.layer.borderWidth = 2
         cellImage.clipsToBounds = true
         cellImage.layer.borderColor = UIColor.bluebucks.cgColor
