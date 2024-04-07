@@ -9,7 +9,8 @@ import UIKit
 
 class CartViewController: UIViewController {
     private let productManager = ProductManager()
-    
+    private var product = [Product]()
+    var completion : (() -> ())?
     // MARK: - @IBOutlet
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var cartTableView: UITableView!
@@ -28,6 +29,7 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        product = productManager.getProductList()
         // purchaseBtn 색상 변경
         purchaseBtn.setTitle("결제하기", for: .normal)
         purchaseBtn.setTitleColor(.white, for: .normal)
@@ -99,8 +101,10 @@ class CartViewController: UIViewController {
         // 확인 버튼 클릭 시 테이블 뷰 전체 삭제 기능 추가
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.productManager.deleteAllProduct()
+            self?.product = self!.productManager.getProductList()
             self?.cartTableView.reloadData()
             self?.updateCartInfo() // 카트 정보 업데이트
+            self?.dismiss(animated: true, completion: self!.completion)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
@@ -143,8 +147,9 @@ class CartViewController: UIViewController {
         // 메인화면으로 전환
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.productManager.deleteAllProduct() // 모든 제품 삭제
+            self?.product = self!.productManager.getProductList()
             self?.cartTableView.reloadData() // 테이블 뷰 새로고침
-            self?.dismiss(animated: true, completion: nil) // 뷰 컨트롤러 닫기
+            self?.dismiss(animated: true, completion: self!.completion) // 뷰 컨트롤러 닫기
         }
         
         secondAlert.addAction(ok)
@@ -172,7 +177,7 @@ extension CartViewController: UITableViewDelegate {
 
 extension CartViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productManager.getProductList().count
+        return product.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -181,8 +186,7 @@ extension CartViewController: UITableViewDataSource{
             print("ShoppingCartCell로 캐스팅할 수 없습니다.")
             return UITableViewCell()
         }
-        let product = productManager.getProductList()[indexPath.row]
-        cell.product = product
+        cell.product = product[indexPath.row]
         // cell의 바닥선 관련
         cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
         tableView.separatorColor = UIColor.lightGray
@@ -191,35 +195,35 @@ extension CartViewController: UITableViewDataSource{
         // 증가 클로저
         cell.increaseClosure = { [weak self] in
             guard let self = self else { return }
-            if self.productManager.increaseDrinkCount(product: product) {
-                tableView.reloadRows(at: [indexPath], with: .none)
+            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) { tableView.reloadRows(at: [indexPath], with: .none)
+                product = productManager.getProductList()
                 self.updateCartInfo()
+                completion!()
             }
         }
         
         // 감소 클로저
         cell.decreaseClosure = { [weak self] in
             guard let self = self else { return }
-            if self.productManager.decreaseDrinkCount(product: product) {
-                tableView.reloadRows(at: [indexPath], with: .none)
+            if self.productManager.decreaseDrinkCount(product: product[indexPath.row]) { tableView.reloadRows(at: [indexPath], with: .none)
+                product = productManager.getProductList()
+                tableView.reloadData()
             } else {
                 // 수량이 1이하일 때는 숫자 변경 x
                 countWarningAlert()
             }
             self.updateCartInfo()
+            completion!()
         }
         
         // 삭제 클로저
-        cell.deleteClosure = { [weak self] in
-            guard let self = self else { return }
+        cell.deleteClosure = { [self] in
+            productManager.deleteProduct(product: product[indexPath.row])
             
-            // 데이터 모델에서 셀에 해당하는 데이터 삭제
-            if self.productManager.deleteProduct(product: product) {
-                // 테이블 뷰에서 해당 셀 삭제
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            product = productManager.getProductList()
             // 카트 정보 업데이트
             self.updateCartInfo()
+            completion!()
         }
         return cell
     }
