@@ -30,6 +30,7 @@ class CartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         product = productManager.getProductList()
+        cartTableView.reloadData()
         // purchaseBtn 색상 변경
         purchaseBtn.setTitle("결제하기", for: .normal)
         purchaseBtn.setTitleColor(.white, for: .normal)
@@ -195,15 +196,17 @@ extension CartViewController: UITableViewDataSource{
             return UITableViewCell()
         }
         cell.product = product[indexPath.row]
-        // cell의 바닥선 관련
-        cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
-        tableView.separatorColor = UIColor.lightGray
-        tableView.separatorStyle = .singleLine
+        
+        // Check if the current cell is the last cell in the table view
+        let isLastCell = indexPath.row == product.count - 1
+            
+        // 마지막 cell의 바닥선 hidden 처리
+        cell.bottomBar.isHidden = isLastCell
         
         // 증가 클로저
-        cell.increaseClosure = { [weak self] in
-            guard let self = self else { return }
-            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) { tableView.reloadRows(at: [indexPath], with: .none)
+        cell.increaseClosure = { [self] in
+//            guard let self = self else { return }
+            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) { cartTableView.reloadRows(at: [indexPath], with: .none)
                 product = productManager.getProductList()
                 self.updateCartInfo()
                 completion!()
@@ -211,10 +214,11 @@ extension CartViewController: UITableViewDataSource{
         }
         
         // 감소 클로저
-        cell.decreaseClosure = { [weak self] in
-            guard let self = self else { return }
-            if self.productManager.decreaseDrinkCount(product: product[indexPath.row]) { tableView.reloadRows(at: [indexPath], with: .none)
+        cell.decreaseClosure = { [self] in
+//            guard let self = self else { return }
+            if self.productManager.decreaseDrinkCount(product: product[indexPath.row]) {
                 product = productManager.getProductList()
+                tableView.reloadRows(at: [indexPath], with: .none)
                 tableView.reloadData()
             } else {
                 // 수량이 1이하일 때는 숫자 변경 x
