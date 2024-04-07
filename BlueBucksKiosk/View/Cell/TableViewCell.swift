@@ -11,6 +11,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var minusBtn: UIButton!
     @IBOutlet weak var plusBtn: UIButton!
+    @IBOutlet weak var bottomBar: UIView!
     
     //예상 변수 이름 설정
     // var 더하기 빼기 : ((bool) -> ())?
@@ -74,38 +75,15 @@ class TableViewCell: UITableViewCell {
     
     // tag값에 따라 액션이 바뀌는 함수
     @IBAction func didTappedCountButton(_ sender: UIButton) {
-        if sender.tag == 0 {
-            // 변수이름(bool) 파라미터 타입
-            // 빼기
-            decreaseClosure?()
-        } else {
-            // 더하기
-            increaseClosure?()
-        }
-        if sender.tag == 2 {
-            // 셀 삭제 변수이름
-            deleteClosure?()
+        switch sender.tag {
+        case 0:
+            decreaseClosure!()
+        case 1:
+            increaseClosure!()
+        case 2:
+            deleteClosure!()
+        default:
+            break
         }
     }
-    
-//    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-//        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setView()
-//    }
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        // Cell 간격 조정
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//    }
-//    
-//    func setView() {
-//        contentView.layer.cornerRadius = 10
-//        contentView.layer.borderWidth = 2
-//        contentView.layer.borderColor = UIColor.lightGray.cgColor
-//    }
 }
