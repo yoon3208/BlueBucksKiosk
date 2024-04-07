@@ -43,6 +43,8 @@ class CartViewController: UIViewController {
         allClearBtn.clipsToBounds = true
         allClearBtn.layer.cornerRadius = 8
         // cartTableView
+        cartTableView.layer.borderColor = UIColor.lightGray.cgColor
+        cartTableView.layer.borderWidth = 1
         cartTableView.layer.cornerRadius = 8
         // menuView
         menuView.layer.cornerRadius = 8
@@ -54,6 +56,8 @@ class CartViewController: UIViewController {
         menuPriceSum.textColor = .bluebucks
         // 초기값 세팅
         updateCartInfo()
+        let nib = UINib(nibName: "TableViewCell", bundle: .main)
+        self.cartTableView.register(nib, forCellReuseIdentifier: TableViewCell.identifier)
     }
     
     // MARK: - function
@@ -77,9 +81,17 @@ class CartViewController: UIViewController {
         let totalItems = productList.count
         let totalPrice = calculateTotalPrice(for: productList)
         
+        // NumberFormatter 인스턴스 생성
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal // 천 단위 구분 기호를 사용하도록 설정
+        
+        // 포맷된 가격 문자열 생성
+        let formattedTotalPrice = numberFormatter.string(for: totalPrice) ?? "\(totalPrice)"
+        
         menuCnt.text = "\(totalItems)개"
-        menuPriceSum.text = "\(totalPrice)원"
+        menuPriceSum.text = "\(formattedTotalPrice)원"
     }
+    
     // 삭제하기 버튼 눌렀을 때 얼럿
     func showCancelAlert() {
         let alert = UIAlertController(title: nil, message: "전체 삭제 하시겠습니까?", preferredStyle: .alert)
@@ -117,7 +129,6 @@ class CartViewController: UIViewController {
             // 확인 버튼을 눌렀을 때 실행될 코드
             self.secondAlert()
         }
-        
         let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
         
         alert.addAction(ok)
@@ -125,7 +136,6 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
-    
     
     func secondAlert() {
         let secondAlert = UIAlertController(title: nil, message: "결제가 완료되었습니다.", preferredStyle: .alert)
@@ -173,6 +183,10 @@ extension CartViewController: UITableViewDataSource{
         }
         let product = productManager.getProductList()[indexPath.row]
         cell.product = product
+        // cell의 바닥선 관련
+        cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
+        tableView.separatorColor = UIColor.lightGray
+        tableView.separatorStyle = .singleLine
         
         // 증가 클로저
         cell.increaseClosure = { [weak self] in
@@ -210,4 +224,3 @@ extension CartViewController: UITableViewDataSource{
         return cell
     }
 }
-

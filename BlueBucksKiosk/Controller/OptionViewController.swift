@@ -19,6 +19,8 @@ class OptionViewController: UIViewController {
     
     var drink: Drink?
     
+    var completion: (() -> ())?
+    
     // MARK: - IBOutlets
     @IBOutlet weak var tallBtn: UIButton!
     @IBOutlet weak var grandeBtn: UIButton!
@@ -38,40 +40,57 @@ class OptionViewController: UIViewController {
         self.drinkNameEng.text = drink?.name.1
         
         updateTotalCountLabel()
+        
     }
     
     // MARK: - IBActions
     
     @IBAction func selectedButtonTapped(_ sender: UIButton) {
-        [tallBtn, grandeBtn, ventiBtn].forEach { button in
-            if sender === button {
-                button.isSelected.toggle()
-                index = sender.tag
-            } else {
-                button.isSelected = false
+        // count가 0일 때만 count 값을 1로 설정합니다.
+            if count == 0 {
+                count = 1
             }
-            updateButtonAppearance(button)
+
+            // 버튼을 순회하면서 선택된 버튼과 나머지 버튼을 처리합니다.
+            [tallBtn, grandeBtn, ventiBtn].forEach { button in
+                if sender === button {
+                    // 선택된 버튼인 경우
+                    button.isSelected = true
+                    index = sender.tag // 선택된 버튼의 태그 값을 index에 할당합니다.
+                } else {
+                    // 선택되지 않은 버튼인 경우
+                    button.isSelected = false
+                }
+                updateButtonAppearance(button) // 버튼의 외관을 업데이트합니다.
+            }
+
+            updateSize() // 선택된 사이즈를 업데이트합니다.
+            updateTotalCountLabel() // 총 수량 레이블을 업데이트합니다.
+            let isOptionChosen = index != -1
+            updateOptionAddPrice(isOptionChosen: isOptionChosen) // 옵션에 따른 가격을 업데이트합니다.
         }
-        updateSize()
-        let isOptionChosen = index != -1
-        updateOptionAddPrice(isOptionChosen: isOptionChosen)
-    }
     
     @IBAction func updateCount(_ sender: UIButton) {
-        // 옵션을 선택하지 않은 경우 또는 현재 버튼이 선택된 옵션과 동일한 경우에만 카운트 업데이트
-        if index == -1 || sender.tag == index {
-            if sender.tag != index {
-                if count > 0 {
-                    count -= 1
-                }
-            } else {
-                count += 1
-            } // 카운트가 1보다 큰 경우에만 실행
-            updateTotalCountLabel()
-            let isOptionChosen = index != -1
-            updateOptionAddPrice(isOptionChosen: isOptionChosen)
-        }
-    }
+        // 옵션을 선택하지 않은 경우 변경을 허용하지 않음
+          if index == -1 {
+              return
+          }
+
+          // 감소 버튼이 눌렸을 때
+        if sender.tag == 3 {
+              if count > 1 {
+                  count -= 1
+              }
+          }
+          // 증가 버튼이 눌렸을 때
+        else if sender.tag == 4{
+              count += 1
+          }
+
+          updateTotalCountLabel()
+          let isOptionChosen = index != -1
+          updateOptionAddPrice(isOptionChosen: isOptionChosen)
+      }
     
     @IBAction func addToCart(_ sender: UIButton) {
         // 옵션을 선택하지 않은 경우에 알림 표시
@@ -84,10 +103,13 @@ class OptionViewController: UIViewController {
         } else {
             let product = Product(drink: drink!, count: count, size: size)
             manager.addProduct(product: product)
-            let mainVC = MainViewController()
-            mainVC.modalPresentationStyle = .fullScreen
+            completion!()
             self.navigationController?.popToRootViewController(animated: true)
         }
+    }
+    
+    @IBAction func clickBackButton(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Custom Methods
@@ -133,6 +155,10 @@ class OptionViewController: UIViewController {
         } else {
             price = 0 // 옵션이 선택되지 않았을 때 가격 초기화
         }
-        optionAddPrice.text = "가격: \(price)"
+        let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            if let formattedPrice = numberFormatter.string(from: NSNumber(value: price)) {
+                optionAddPrice.text = "\(formattedPrice)원" // 이 부분을 변경하여 가격을 표시합니다.
+            }
     }
 }
