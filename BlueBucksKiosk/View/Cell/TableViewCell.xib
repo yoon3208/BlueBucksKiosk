@@ -26,48 +26,39 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rb-V2-aAx">
-                        <rect key="frame" x="74" y="13" width="33" height="13.333333333333336"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="74" y="13" width="34.333333333333343" height="13.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJL-Eq-rkq">
-                        <rect key="frame" x="110" y="42.333333333333336" width="4" height="16"/>
+                        <rect key="frame" x="111.33333333333333" y="42.333333333333336" width="4" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Pq-lG-nRq">
-                        <rect key="frame" x="121" y="43.666666666666664" width="24" height="13.333333333333336"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="122.33333333333331" y="43.666666666666664" width="25" height="13.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyQ-Sc-M0B">
-                        <rect key="frame" x="74" y="43.666666666666664" width="29" height="13.333333333333336"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="74" y="43.666666666666664" width="30.333333333333329" height="13.333333333333336"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YM1-sR-wnM">
-                        <rect key="frame" x="318" y="2" width="16" height="16"/>
+                        <rect key="frame" x="317" y="3" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="6fd-TZ-1aa"/>
                             <constraint firstAttribute="width" constant="16" id="Flk-rb-rDK"/>
                             <constraint firstAttribute="width" secondItem="YM1-sR-wnM" secondAttribute="height" multiplier="1:1" id="JfC-Um-eE7"/>
                         </constraints>
                         <color key="tintColor" name="maincolor"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain">
-                            <attributedString key="attributedTitle">
-                                <fragment content="X">
-                                    <attributes>
-                                        <font key="NSFont" size="10" name="Helvetica-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                        </buttonConfiguration>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="" image="xmark.app.fill" catalog="system"/>
                         <connections>
                             <action selector="didTappedCountButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2Hf-um-UMq"/>
                         </connections>
@@ -132,7 +123,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="0">
                                         <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <font key="NSFont" metaFont="cellTitle"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -165,11 +156,11 @@
                     <constraint firstAttribute="bottom" secondItem="gZu-gT-o9E" secondAttribute="bottom" constant="5" id="M96-Yd-R46"/>
                     <constraint firstItem="cJL-Eq-rkq" firstAttribute="leading" secondItem="JyQ-Sc-M0B" secondAttribute="trailing" constant="7" id="OlW-Yg-7HS"/>
                     <constraint firstAttribute="bottom" secondItem="JyQ-Sc-M0B" secondAttribute="bottom" constant="13" id="SpQ-uO-N1p"/>
-                    <constraint firstItem="YM1-sR-wnM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="T8n-nH-9oj"/>
+                    <constraint firstItem="YM1-sR-wnM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="T8n-nH-9oj"/>
                     <constraint firstItem="gZu-gT-o9E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="WqD-JA-3ko"/>
                     <constraint firstItem="2Pq-lG-nRq" firstAttribute="centerY" secondItem="cJL-Eq-rkq" secondAttribute="centerY" id="YH3-4f-55b"/>
                     <constraint firstItem="gZu-gT-o9E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="a42-Tu-J9N"/>
-                    <constraint firstAttribute="trailing" secondItem="YM1-sR-wnM" secondAttribute="trailing" constant="2" id="lfy-V6-NeR"/>
+                    <constraint firstAttribute="trailing" secondItem="YM1-sR-wnM" secondAttribute="trailing" constant="3" id="lfy-V6-NeR"/>
                     <constraint firstItem="cJL-Eq-rkq" firstAttribute="centerY" secondItem="JyQ-Sc-M0B" secondAttribute="centerY" id="mmD-nv-Qr3"/>
                     <constraint firstAttribute="trailing" secondItem="qYB-On-XTx" secondAttribute="trailing" constant="25" id="o6o-Lj-Pjd"/>
                     <constraint firstItem="JyQ-Sc-M0B" firstAttribute="leading" secondItem="gZu-gT-o9E" secondAttribute="trailing" constant="7" id="oNZ-ZP-wMN"/>
@@ -193,6 +184,7 @@
     </objects>
     <resources>
         <image name="minus" catalog="system" width="128" height="26"/>
+        <image name="xmark.app.fill" catalog="system" width="128" height="114"/>
         <namedColor name="maincolor">
             <color red="0.0" green="0.6588235294117647" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
