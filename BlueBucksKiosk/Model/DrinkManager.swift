@@ -104,7 +104,7 @@ struct DrinkManager {
               price: (4500, 5000, 5500),
               category: .teavana),
         Drink(id: UUID(),name: ("얼 그레이 티", "Earl Grey Brewed Tea"),
-              image: UIImage(named: "arl Grey Brewed Tea.jpg") ?? UIImage(),
+              image: UIImage(named: "Earl Grey Brewed Tea.jpg") ?? UIImage(),
               description: "꽃향 가득한 라벤더와 베르가못 향이 진한 홍차와 블렌딩된 향긋한 블랙 티",
               price: (4500, 5000, 5500),
               category: .teavana),
