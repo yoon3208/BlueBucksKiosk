@@ -9,7 +9,8 @@ import UIKit
 
 class CartViewController: UIViewController {
     private let productManager = ProductManager()
-    
+    private var product = [Product]()
+    var completion : (() -> ())?
     // MARK: - @IBOutlet
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var cartTableView: UITableView!
@@ -28,6 +29,8 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        product = productManager.getProductList()
+        cartTableView.reloadData()
         // purchaseBtn 색상 변경
         purchaseBtn.setTitle("결제하기", for: .normal)
         purchaseBtn.setTitleColor(.white, for: .normal)
@@ -44,7 +47,7 @@ class CartViewController: UIViewController {
         allClearBtn.layer.cornerRadius = 8
         // cartTableView
         cartTableView.layer.borderColor = UIColor.lightGray.cgColor
-        cartTableView.layer.borderWidth = 1
+        cartTableView.layer.borderWidth = 2
         cartTableView.layer.cornerRadius = 8
         // menuView
         menuView.layer.cornerRadius = 8
@@ -52,8 +55,8 @@ class CartViewController: UIViewController {
         cartTableView.delegate = self
         cartTableView.dataSource = self
         // menuCnt, menuPriceSum 설정
-        menuCnt.textColor = .bluebucks
-        menuPriceSum.textColor = .bluebucks
+        menuCnt.textColor = .darkGray
+        menuPriceSum.textColor = .darkGray
         // 초기값 세팅
         updateCartInfo()
         let nib = UINib(nibName: "TableViewCell", bundle: .main)
@@ -78,7 +81,7 @@ class CartViewController: UIViewController {
     // product 정보 업데이트
     func updateCartInfo() {
         let productList = productManager.getProductList()
-        let totalItems = productList.count
+        let totalItems = productList.map { $0.count }.reduce(0, +)
         let totalPrice = calculateTotalPrice(for: productList)
         
         // NumberFormatter 인스턴스 생성
@@ -90,6 +93,10 @@ class CartViewController: UIViewController {
         
         menuCnt.text = "\(totalItems)개"
         menuPriceSum.text = "\(formattedTotalPrice)원"
+        if product.count >= 1 {
+            menuCnt.textColor = .bluebucks
+            menuPriceSum.textColor = .bluebucks
+        }
     }
     
     // 삭제하기 버튼 눌렀을 때 얼럿
@@ -99,8 +106,17 @@ class CartViewController: UIViewController {
         // 확인 버튼 클릭 시 테이블 뷰 전체 삭제 기능 추가
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.productManager.deleteAllProduct()
+            self?.product = self!.productManager.getProductList()
             self?.cartTableView.reloadData()
             self?.updateCartInfo() // 카트 정보 업데이트
+            // final alert
+            let finalAlert = UIAlertController(title: nil, message: "전체 삭제되었습니다.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: { _ in
+                // 삭제후 dismiss
+                self?.dismiss(animated: true, completion: self!.completion)
+            })
+            finalAlert.addAction(okAction)
+            self?.present(finalAlert, animated: true, completion: nil)
         }
         
         let cancel = UIAlertAction(title: "취소", style: .destructive, handler: nil)
@@ -110,6 +126,7 @@ class CartViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+
     // 결제하기 버튼 눌렀을 때 나타나는 얼럿
     func purchaseAlert() {
         // 카트에 제품이 있는지 확인
@@ -143,8 +160,9 @@ class CartViewController: UIViewController {
         // 메인화면으로 전환
         let ok = UIAlertAction(title: "확인", style: .default) { [weak self] action in
             self?.productManager.deleteAllProduct() // 모든 제품 삭제
+            self?.product = self!.productManager.getProductList()
             self?.cartTableView.reloadData() // 테이블 뷰 새로고침
-            self?.dismiss(animated: true, completion: nil) // 뷰 컨트롤러 닫기
+            self?.dismiss(animated: true, completion: self!.completion) // 뷰 컨트롤러 닫기
         }
         
         secondAlert.addAction(ok)
@@ -172,8 +190,9 @@ extension CartViewController: UITableViewDelegate {
 
 extension CartViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productManager.getProductList().count
+        return product.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as? TableViewCell else {
@@ -181,45 +200,49 @@ extension CartViewController: UITableViewDataSource{
             print("ShoppingCartCell로 캐스팅할 수 없습니다.")
             return UITableViewCell()
         }
-        let product = productManager.getProductList()[indexPath.row]
-        cell.product = product
-        // cell의 바닥선 관련
-        cell.separatorInset = UIEdgeInsets(top: 0, left: cell.bounds.width, bottom: 0, right: 0)
-        tableView.separatorColor = UIColor.lightGray
-        tableView.separatorStyle = .singleLine
+        cell.product = product[indexPath.row]
+        
+        // Check if the current cell is the last cell in the table view
+//        let isLastCell = indexPath.row == product.count - 1
+            
+        // 마지막 cell의 바닥선 hidden 처리
+//        cell.bottomBar.isHidden = isLastCell
         
         // 증가 클로저
-        cell.increaseClosure = { [weak self] in
-            guard let self = self else { return }
-            if self.productManager.increaseDrinkCount(product: product) {
-                tableView.reloadRows(at: [indexPath], with: .none)
+        cell.increaseClosure = { [self] in
+//            guard let self = self else { return }
+            if self.productManager.increaseDrinkCount(product: product[indexPath.row]) {
+                product = productManager.getProductList()
                 self.updateCartInfo()
+                completion!()
             }
+            cartTableView.reloadRows(at: [indexPath], with: .none)
         }
         
         // 감소 클로저
-        cell.decreaseClosure = { [weak self] in
-            guard let self = self else { return }
-            if self.productManager.decreaseDrinkCount(product: product) {
-                tableView.reloadRows(at: [indexPath], with: .none)
+        cell.decreaseClosure = { [self] in
+//            guard let self = self else { return }
+            if self.productManager.decreaseDrinkCount(product: product[indexPath.row]) {
+                product = productManager.getProductList()
             } else {
                 // 수량이 1이하일 때는 숫자 변경 x
                 countWarningAlert()
             }
+            tableView.reloadRows(at: [indexPath], with: .none)
             self.updateCartInfo()
+            completion!()
         }
         
         // 삭제 클로저
-        cell.deleteClosure = { [weak self] in
-            guard let self = self else { return }
-            
-            // 데이터 모델에서 셀에 해당하는 데이터 삭제
-            if self.productManager.deleteProduct(product: product) {
-                // 테이블 뷰에서 해당 셀 삭제
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+        cell.deleteClosure = { [self] in
+            productManager.deleteProduct(product: product[indexPath.row])
+            product = productManager.getProductList()
             // 카트 정보 업데이트
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            menuCnt.textColor = .darkGray
+            menuPriceSum.textColor = .darkGray
             self.updateCartInfo()
+            completion!()
         }
         return cell
     }
